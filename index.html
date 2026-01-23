@@ -26,9 +26,8 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background: #0a0a0a;
+            overflow: hidden;
         }
 
         .bg-animation::before {
@@ -36,19 +35,115 @@
             position: absolute;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: gridMove 20s linear infinite;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            animation: moveGradient 20s ease infinite;
         }
 
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
         }
 
-        @keyframes gridMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(50px, 50px); }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: float 20s infinite ease-in-out;
+            opacity: 0.3;
+        }
+
+        .shape:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .shape:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent);
+            top: 60%;
+            right: 10%;
+            animation-delay: -7s;
+            animation-duration: 30s;
+        }
+
+        .shape:nth-child(3) {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
+            bottom: 20%;
+            left: 50%;
+            animation-delay: -14s;
+            animation-duration: 28s;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 15s infinite linear;
+        }
+
+        .particle:nth-child(2n) {
+            background: rgba(255, 0, 255, 0.6);
+            animation-duration: 20s;
+        }
+
+        .particle:nth-child(3n) {
+            background: rgba(138, 43, 226, 0.6);
+            animation-duration: 18s;
+        }
+
+        @keyframes moveGradient {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(-30%, 30%) rotate(120deg); }
+            66% { transform: translate(30%, -30%) rotate(240deg); }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(100px, -100px) scale(1.1);
+            }
+            66% {
+                transform: translate(-100px, 100px) scale(0.9);
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
 
         /* Navigation */
@@ -223,8 +318,10 @@
         /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .skill-card {
@@ -451,7 +548,33 @@
     </style>
 </head>
 <body>
-    <div class="bg-animation"></div>
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="particles">
+            <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+            <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+            <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+            <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+            <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+            <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 15%; animation-delay: 6s;"></div>
+            <div class="particle" style="left: 25%; animation-delay: 3.5s;"></div>
+            <div class="particle" style="left: 35%; animation-delay: 5.5s;"></div>
+            <div class="particle" style="left: 45%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 55%; animation-delay: 4.2s;"></div>
+            <div class="particle" style="left: 65%; animation-delay: 2.8s;"></div>
+            <div class="particle" style="left: 75%; animation-delay: 6.5s;"></div>
+            <div class="particle" style="left: 85%; animation-delay: 1.2s;"></div>
+            <div class="particle" style="left: 95%; animation-delay: 3.8s;"></div>
+        </div>
+    </div>
 
     <nav>
         <div class="container">
@@ -467,9 +590,9 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>Your Name</h1>
+            <h1>Mystic</h1>
             <div class="subtitle">Developer & Game Tester</div>
-            <p class="description">Crafting exceptional digital experiences through code and rigorous quality assurance</p>
+            <p class="description">Building game mods, software solutions, and ensuring quality through playtesting</p>
             <div class="cta-buttons">
                 <a href="#projects" class="btn btn-primary">View My Work</a>
                 <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -480,8 +603,8 @@
     <section id="about">
         <h2>About Me</h2>
         <div style="max-width: 800px; margin: 0 auto; text-align: center; color: #aaa; font-size: 1.2em; line-height: 1.8;">
-            <p>I'm a passionate developer and game tester who bridges the gap between creation and quality. With a keen eye for detail and deep technical expertise, I build robust applications while ensuring every pixel and interaction meets the highest standards.</p>
-            <p style="margin-top: 20px;">My unique perspective allows me to not only develop innovative solutions but also rigorously test them, creating polished products that users love.</p>
+            <p>I'm a developer and game tester who creates custom mods, builds software solutions, and rigorously playtests games to ensure exceptional player experiences. My work spans from modifying existing games to developing standalone applications.</p>
+            <p style="margin-top: 20px;">With hands-on experience in both creation and quality assurance, I understand what makes software and games truly great from multiple angles.</p>
         </div>
     </section>
 
@@ -489,24 +612,19 @@
         <h2>Skills & Expertise</h2>
         <div class="skills-grid">
             <div class="skill-card">
-                <div class="skill-icon">💻</div>
-                <h3>Web Development</h3>
-                <p>JavaScript, React, Node.js, Python, HTML5, CSS3, Git, REST APIs, Database Design</p>
-            </div>
-            <div class="skill-card">
                 <div class="skill-icon">🎮</div>
                 <h3>Game Testing</h3>
-                <p>Functional Testing, Regression Testing, Performance Analysis, Bug Reporting, Test Documentation</p>
+                <p>Playtesting, Bug Identification, Gameplay Analysis, Balance Testing, Performance Analysis, Quality Assurance</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🛠️</div>
-                <h3>Tools & Platforms</h3>
-                <p>Unity, Unreal Engine, JIRA, TestRail, Jenkins, GitHub Actions, Docker</p>
+                <div class="skill-icon">🔧</div>
+                <h3>Mod Development</h3>
+                <p>Game Modding, Scripting, Custom Content Creation, Gameplay Enhancement, Mod Distribution, Community Support</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">🚀</div>
-                <h3>Methodologies</h3>
-                <p>Agile/Scrum, CI/CD, Test-Driven Development, Automation, DevOps Practices</p>
+                <div class="skill-icon">💻</div>
+                <h3>Software Development</h3>
+                <p>Application Development, UI/UX Design, Problem Solving, Code Optimization, Version Control, Software Architecture</p>
             </div>
         </div>
     </section>
@@ -580,7 +698,7 @@
     </section>
 
     <footer>
-        <p>&copy; 2026 Your Name. Designed & Developed with passion.</p>
+        <p>&copy; 2026 Mystic. Designed & Developed with passion.</p>
     </footer>
 </body>
 </html>
