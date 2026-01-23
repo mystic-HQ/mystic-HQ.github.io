@@ -30,18 +30,6 @@
             overflow: hidden;
         }
 
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
-            animation: moveGradient 20s ease infinite;
-        }
-
         .floating-shapes {
             position: absolute;
             width: 100%;
@@ -51,39 +39,38 @@
         .shape {
             position: absolute;
             border-radius: 50%;
-            filter: blur(40px);
-            animation: float 20s infinite ease-in-out;
-            opacity: 0.3;
+            filter: blur(60px);
+            animation: floatSmooth 30s infinite ease-in-out;
+            opacity: 0.2;
         }
 
         .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.5), transparent);
             top: 20%;
             left: 10%;
-            animation-delay: 0s;
-            animation-duration: 25s;
+            animation-duration: 35s;
         }
 
         .shape:nth-child(2) {
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 0, 255, 0.3), transparent);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 0, 255, 0.4), transparent);
             top: 60%;
             right: 10%;
-            animation-delay: -7s;
-            animation-duration: 30s;
+            animation-delay: -10s;
+            animation-duration: 40s;
         }
 
         .shape:nth-child(3) {
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.4), transparent);
             bottom: 20%;
             left: 50%;
-            animation-delay: -14s;
-            animation-duration: 28s;
+            animation-delay: -20s;
+            animation-duration: 38s;
         }
 
         .particles {
@@ -111,21 +98,18 @@
             animation-duration: 18s;
         }
 
-        @keyframes moveGradient {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-30%, 30%) rotate(120deg); }
-            66% { transform: translate(30%, -30%) rotate(240deg); }
-        }
-
-        @keyframes float {
+        @keyframes floatSmooth {
             0%, 100% {
-                transform: translate(0, 0) scale(1);
+                transform: translate(0, 0);
             }
-            33% {
-                transform: translate(100px, -100px) scale(1.1);
+            25% {
+                transform: translate(50px, -50px);
             }
-            66% {
-                transform: translate(-100px, 100px) scale(0.9);
+            50% {
+                transform: translate(-30px, 30px);
+            }
+            75% {
+                transform: translate(40px, 60px);
             }
         }
 
