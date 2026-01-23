@@ -22,37 +22,45 @@ inset:0;
 z-index:-3;
 background:radial-gradient(circle at top,#0c1224,#05060a 60%);
 overflow:hidden;
+isolation:isolate;
 }
 
-/* ===== AURORA WAVES ===== */
+/* ===== ENHANCED AURORA ===== */
 .aurora{
 position:absolute;
-width:200%;
-height:200%;
-top:-50%;
-left:-50%;
+width:220%;
+height:220%;
+top:-60%;
+left:-60%;
 background:
 linear-gradient(120deg,
-rgba(0,255,255,.12),
-rgba(140,0,255,.12),
-rgba(0,150,255,.12),
-rgba(0,255,180,.08)
+rgba(0,255,255,.10),
+rgba(140,0,255,.10),
+rgba(0,150,255,.10),
+rgba(0,255,180,.06)
 );
-filter:blur(120px);
-animation:auroraMove 25s linear infinite;
+filter:blur(140px);
+animation:auroraMove 32s linear infinite;
 transform-origin:center;
+opacity:.85;
 }
 
 .aurora.second{
-animation-duration:35s;
-animation-direction:reverse;
-opacity:.6;
+animation:auroraMoveReverse 46s linear infinite;
+opacity:.55;
+transform:scale(1.15);
 }
 
 @keyframes auroraMove{
 0%{transform:rotate(0deg) translateY(0)}
-50%{transform:rotate(180deg) translateY(-8%)}
+50%{transform:rotate(180deg) translateY(-6%)}
 100%{transform:rotate(360deg) translateY(0)}
+}
+
+@keyframes auroraMoveReverse{
+0%{transform:rotate(360deg) translateY(0)}
+50%{transform:rotate(180deg) translateY(8%)}
+100%{transform:rotate(0deg) translateY(0)}
 }
 
 /* ===== SLOW PARALLAX GLOW ===== */
@@ -71,8 +79,9 @@ animation:glowDrift 18s ease-in-out infinite alternate;
 .glow.blue{background:#3a7bff;top:55%;left:55%}
 
 @keyframes glowDrift{
-from{transform:translate(0,0)}
-to{transform:translate(120px,-100px)}
+0%{transform:translate(0,0)}
+50%{transform:translate(80px,-120px)}
+100%{transform:translate(-40px,60px)}
 }
 
 /* ===== GRAIN (FREE INLINE SVG) ===== */
@@ -85,19 +94,39 @@ pointer-events:none;
 z-index:-1;
 }
 
-/* ===== PARTICLES ===== */
+/* ===== ENHANCED PARTICLES ===== */
 .particles span{
 position:absolute;
-width:2px;height:2px;
-background:rgba(255,255,255,.8);
 border-radius:50%;
-opacity:.6;
-animation:particle linear infinite;
+background:rgba(255,255,255,.85);
+opacity:.4;
+animation:particleDrift linear infinite;
+will-change:transform;
 }
 
-@keyframes particle{
-from{transform:translateY(110vh)}
-to{transform:translateY(-10vh)}
+.particles span.small{
+width:1px;height:1px;
+opacity:.25;
+}
+
+.particles span.medium{
+width:2px;height:2px;
+opacity:.45;
+}
+
+.particles span.large{
+width:3px;height:3px;
+opacity:.6;
+filter:blur(.3px);
+}
+
+@keyframes particleDrift{
+from{
+transform:translateY(120vh) translateX(0);
+}
+to{
+transform:translateY(-20vh) translateX(140px);
+}
 }
 
 /* ================= UI ================= */
@@ -167,25 +196,17 @@ padding:0 20px;
 .hero h1{
 font-size:4.5em;
 font-weight:900;
-background:repeating-linear-gradient(
-135deg,
-#00ffff 0%,
-#9a5cff 25%,
-#3a7bff 50%,
-#9a5cff 75%,
-#00ffff 100%
-);
-background-size:200% 200%;
+background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff);
+background-size:300%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-animation:textFlow 10s linear infinite;
+animation:textFlow 8s linear infinite;
 }
 
 @keyframes textFlow{
-from{background-position:0% 50%}
-to{background-position:200% 50%}
+0%{background-position:0%}
+100%{background-position:300%}
 }
-
 
 .subtitle{font-size:1.6em;color:#ccc;margin:20px 0}
 .description{max-width:720px;margin:auto;color:#aaa;line-height:1.7}
@@ -326,7 +347,7 @@ text-align:center;
 <h1>Mystic</h1>
 <div class="subtitle" data-i18n="subtitle">Developer & Game Tester</div>
 <p class="description" data-i18n="desc">
-French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.
+Developer and game tester providing structured playtesting, bug reports, and gameplay feedback.
 </p>
 </div>
 </section>
@@ -335,7 +356,7 @@ French developer and game tester providing structured playtesting, bug reports, 
 <h2 data-i18n="about">About</h2>
 <p class="description" data-i18n="aboutText">
 I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback.
-My technical knowledge allows me to read code, understand it, and thus help other developpers through playtesting, whether I have access to the code or not.
+My technical knowledge allows clear communication with developers and actionable testing results.
 </p>
 </section>
 
@@ -364,7 +385,7 @@ My technical knowledge allows me to read code, understand it, and thus help othe
 <p data-i18n="abyss">
 Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.
 </p>
-<a class="project-link" href="https://discord.gg/deepspiritgames">View</a>
+<a class="project-link" href="https://discord.gg/deepspirit">View</a>
 </div>
 
 <div class="project-card">
@@ -418,16 +439,20 @@ Lethal Company mod that syncs the cruiser between players.
 </section>
 
 <script>
-/* particles */
+/* ===== PARTICLES JS ===== */
 const p=document.getElementById("particles");
-for(let i=0;i<50;i++){
+const sizes=["small","medium","large"];
+for(let i=0;i<70;i++){
 const s=document.createElement("span");
+const size=sizes[Math.floor(Math.random()*sizes.length)];
+s.classList.add(size);
 s.style.left=Math.random()*100+"%";
-s.style.animationDuration=15+Math.random()*20+"s";
+s.style.animationDuration=18+Math.random()*25+"s";
+s.style.animationDelay=Math.random()*-40+"s";
 p.appendChild(s);
 }
 
-/* project switch */
+/* ===== PROJECT SWITCH ===== */
 function showProjects(type,btn){
 document.getElementById("testing").style.display=type==="testing"?"grid":"none";
 document.getElementById("mods").style.display=type==="mods"?"grid":"none";
@@ -435,7 +460,7 @@ document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove(
 btn.classList.add("active");
 }
 
-/* language */
+/* ===== LANGUAGE TOGGLE ===== */
 let fr=false;
 const dict={
 about:["About","À propos"],
@@ -444,11 +469,11 @@ projects:["Projects","Projets"],
 contact:["Contact","Contact"],
 subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
 desc:[
-"French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.",
-"Développeur français et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."
+"Developer and game tester providing structured playtesting, bug reports, and gameplay feedback.",
+"Développeur et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."
 ],
 aboutText:[
-"My technical knowledge allows me to read code, understand it, and thus help other developpers through playtesting, whether I have access to the code or not.",
+"I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows clear communication with developers and actionable testing results.",
 "Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting, sans avoir forcément besoin du code."
 ],
 testing:["Game Testing","Tests de jeux"],
