@@ -12,284 +12,575 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
+        /* Animated background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 60px 40px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            text-align: center;
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        h1 {
-            font-size: 2.5em;
-            color: #667eea;
-            margin-bottom: 10px;
+        .nav-links {
+            display: flex;
+            gap: 30px;
         }
 
-        .tagline {
-            font-size: 1.3em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 10px;
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
+        .nav-links a {
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
             transition: all 0.3s;
+            position: relative;
         }
 
-        .social-links a:hover {
-            background: #764ba2;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            transition: width 0.3s;
         }
 
-        section {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 5em;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff, #00ffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.8em;
+            color: #aaa;
             margin-bottom: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .hero-content .description {
+            font-size: 1.2em;
+            color: #888;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.9s both;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            color: #000;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid #00ffff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         h2 {
-            color: #667eea;
-            margin-bottom: 25px;
-            font-size: 2em;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
+        /* Skills Grid */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
 
         .skill-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            transition: transform 0.3s;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
+            border-color: #00ffff;
+            box-shadow: 0 20px 60px rgba(0, 255, 255, 0.3);
+        }
+
+        .skill-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
         }
 
         .skill-card h3 {
-            margin-bottom: 10px;
-            font-size: 1.3em;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #00ffff;
         }
 
+        .skill-card p {
+            color: #aaa;
+            line-height: 1.6;
+        }
+
+        /* Projects Grid */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
         }
 
         .project-card {
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 25px;
-            transition: all 0.3s;
-            background: white;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255, 0, 255, 0.2);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,255,255,0.1), rgba(255,0,255,0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            border-color: #764ba2;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 0, 255, 0.3);
+            border-color: #ff00ff;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.2);
+        }
+
+        .project-content {
+            padding: 30px;
+            position: relative;
+            z-index: 1;
         }
 
         .project-card h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.4em;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #ff00ff;
         }
 
         .project-card p {
-            color: #666;
-            margin-bottom: 15px;
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .tech-tag {
-            background: #f0f0f0;
-            padding: 5px 12px;
-            border-radius: 15px;
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            padding: 5px 15px;
+            border-radius: 20px;
             font-size: 0.85em;
-            color: #667eea;
+            color: #00ffff;
         }
 
         .project-link {
             display: inline-block;
-            padding: 8px 16px;
-            background: #667eea;
-            color: white;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #ff00ff, #00ffff);
+            color: #000;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
         .project-link:hover {
-            background: #764ba2;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 0, 255, 0.5);
         }
 
-        .about-content {
-            font-size: 1.1em;
-            color: #555;
-            line-height: 1.8;
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
         }
 
+        .contact-item {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            border-color: #00ffff;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .contact-item h3 {
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #00ffff;
+        }
+
+        /* Footer */
         footer {
             text-align: center;
-            padding: 30px;
-            color: white;
-            font-size: 0.9em;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            color: #666;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
+            .hero-content h1 {
+                font-size: 3em;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.3em;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            h2 {
                 font-size: 2em;
-            }
-
-            .skills-grid, .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            section {
-                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <div class="bg-animation"></div>
+
+    <nav>
+        <div class="container">
+            <div class="logo">MYSTIC</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
             <h1>Your Name</h1>
-            <p class="tagline">Developer & Game Tester</p>
-            <p>Building innovative software and ensuring exceptional gaming experiences</p>
-            <div class="social-links">
-                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                <a href="mailto:your.email@example.com">Email</a>
+            <div class="subtitle">Developer & Game Tester</div>
+            <p class="description">Crafting exceptional digital experiences through code and rigorous quality assurance</p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
             </div>
-        </header>
+        </div>
+    </section>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>I'm a passionate developer and game tester with a keen eye for detail and a love for creating seamless user experiences. With expertise in both development and quality assurance, I bridge the gap between creating great software and ensuring it works flawlessly.</p>
-                <p style="margin-top: 15px;">My dual focus allows me to not only build applications but also understand the critical importance of testing, debugging, and delivering polished products that users love.</p>
+    <section id="about">
+        <h2>About Me</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; color: #aaa; font-size: 1.2em; line-height: 1.8;">
+            <p>I'm a passionate developer and game tester who bridges the gap between creation and quality. With a keen eye for detail and deep technical expertise, I build robust applications while ensuring every pixel and interaction meets the highest standards.</p>
+            <p style="margin-top: 20px;">My unique perspective allows me to not only develop innovative solutions but also rigorously test them, creating polished products that users love.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">💻</div>
+                <h3>Web Development</h3>
+                <p>JavaScript, React, Node.js, Python, HTML5, CSS3, Git, REST APIs, Database Design</p>
             </div>
-        </section>
-
-        <section id="skills">
-            <h2>Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Development</h3>
-                    <p>JavaScript, Python, React, Node.js, HTML/CSS, Git, RESTful APIs</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Game Testing</h3>
-                    <p>Functional Testing, Regression Testing, Bug Reporting, Test Case Design, Performance Analysis</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Tools & Platforms</h3>
-                    <p>Unity, Unreal Engine, JIRA, TestRail, Jenkins, GitHub Actions</p>
-                </div>
-                <div class="skill-card">
-                    <h3>Soft Skills</h3>
-                    <p>Attention to Detail, Problem Solving, Communication, Team Collaboration</p>
-                </div>
+            <div class="skill-card">
+                <div class="skill-icon">🎮</div>
+                <h3>Game Testing</h3>
+                <p>Functional Testing, Regression Testing, Performance Analysis, Bug Reporting, Test Documentation</p>
             </div>
-        </section>
+            <div class="skill-card">
+                <div class="skill-icon">🛠️</div>
+                <h3>Tools & Platforms</h3>
+                <p>Unity, Unreal Engine, JIRA, TestRail, Jenkins, GitHub Actions, Docker</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🚀</div>
+                <h3>Methodologies</h3>
+                <p>Agile/Scrum, CI/CD, Test-Driven Development, Automation, DevOps Practices</p>
+            </div>
+        </div>
+    </section>
 
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Game Testing Framework</h3>
-                    <p>Automated testing suite for Unity games with comprehensive coverage of gameplay mechanics and performance metrics.</p>
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">🎯</div>
+                <div class="project-content">
+                    <h3>Automated Test Suite</h3>
+                    <p>Comprehensive testing framework for Unity games with automated performance metrics and coverage reporting.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">C#</span>
                         <span class="tech-tag">Unity</span>
-                        <span class="tech-tag">Automation</span>
+                        <span class="tech-tag">CI/CD</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
+                    <a href="https://github.com/mystic-HQ" class="project-link">View on GitHub</a>
                 </div>
+            </div>
 
-                <div class="project-card">
-                    <h3>Portfolio Website</h3>
-                    <p>Responsive portfolio site showcasing development projects and testing experience with modern design.</p>
+            <div class="project-card">
+                <div class="project-image">🌐</div>
+                <div class="project-content">
+                    <h3>Interactive Web App</h3>
+                    <p>Modern responsive web application with real-time features and beautiful animations.</p>
                     <div class="tech-tags">
                         <span class="tech-tag">React</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <a href="#" class="project-link">View Project</a>
-                </div>
-
-                <div class="project-card">
-                    <h3>Bug Tracker App</h3>
-                    <p>Full-stack application for tracking bugs and issues with team collaboration features and priority management.</p>
-                    <div class="tech-tags">
                         <span class="tech-tag">Node.js</span>
                         <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">Express</span>
                     </div>
-                    <a href="#" class="project-link">View Project</a>
+                    <a href="https://github.com/yourusername" class="project-link">View on GitHub</a>
                 </div>
             </div>
-        </section>
 
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <div class="about-content">
-                <p>I'm always interested in hearing about new opportunities, collaborations, or just chatting about development and gaming. Feel free to reach out!</p>
-                <p style="margin-top: 15px;">📧 <strong>Email:</strong> your.email@example.com</p>
-                <p>💼 <strong>LinkedIn:</strong> linkedin.com/in/yourprofile</p>
-                <p>🐙 <strong>GitHub:</strong> github.com/yourusername</p>
+            <div class="project-card">
+                <div class="project-image">🐛</div>
+                <div class="project-content">
+                    <h3>Bug Tracking System</h3>
+                    <p>Full-stack bug tracking and project management tool with team collaboration features.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">REST API</span>
+                    </div>
+                    <a href="https://github.com/yourusername" class="project-link">View on GitHub</a>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
-            <p>&copy; 2026 Your Name. Built with passion for development and gaming.</p>
-        </footer>
-    </div>
+    <section id="contact">
+        <h2>Let's Connect</h2>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <h3>Email</h3>
+                <a href="mailto:your.email@example.com">your.email@example.com</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">💼</div>
+                <h3>LinkedIn</h3>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">Connect with me</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🐙</div>
+                <h3>GitHub</h3>
+                <a href="https://github.com/mystic-HQ" target="_blank">@mystic-HQ</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Your Name. Designed & Developed with passion.</p>
+    </footer>
 </body>
 </html>
