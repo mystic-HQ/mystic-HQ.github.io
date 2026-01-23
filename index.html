@@ -69,7 +69,7 @@ body{
   100%{filter:blur(130px) brightness(1) saturate(1)}
 }
 
-/* ===== SLOW PARALLAX GLOW ===== */
+/* ===== SLOW PARALLAX GLOW WITH COLOR SHIFT ===== */
 .glow{
   position:absolute;
   width:500px;
@@ -77,7 +77,7 @@ body{
   border-radius:50%;
   filter:blur(160px);
   opacity:.35;
-  animation:glowDrift 18s ease-in-out infinite alternate;
+  animation:glowDrift 18s ease-in-out infinite alternate, glowColor 30s ease-in-out infinite alternate;
 }
 
 .glow.cyan{background:#00ffff;top:10%;left:10%}
@@ -88,6 +88,14 @@ body{
   0%{transform:translate(0,0)}
   50%{transform:translate(80px,-120px)}
   100%{transform:translate(-40px,60px)}
+}
+
+@keyframes glowColor{
+  0%{background:#00ffff}
+  25%{background:#9a5cff}
+  50%{background:#3a7bff}
+  75%{background:#00ffcc}
+  100%{background:#00ffff}
 }
 
 /* ===== GRAIN (FREE INLINE SVG) ===== */
@@ -110,29 +118,13 @@ body::after{
   will-change:transform;
 }
 
-.particles span.small{
-  width:1px;height:1px;
-  opacity:.25;
-}
-
-.particles span.medium{
-  width:2px;height:2px;
-  opacity:.45;
-}
-
-.particles span.large{
-  width:3px;height:3px;
-  opacity:.6;
-  filter:blur(.3px);
-}
+.particles span.small{width:1px;height:1px;opacity:.25}
+.particles span.medium{width:2px;height:2px;opacity:.45}
+.particles span.large{width:3px;height:3px;opacity:.6;filter:blur(.3px)}
 
 @keyframes particleDrift{
-  from{
-    transform:translateY(120vh) translateX(0);
-  }
-  to{
-    transform:translateY(-20vh) translateX(140px);
-  }
+  from{transform:translateY(120vh) translateX(0);}
+  to{transform:translateY(-20vh) translateX(140px);}
 }
 
 /* ================= UI ================= */
@@ -202,13 +194,7 @@ nav .container{
 .hero h1{
   font-size:4.5em;
   font-weight:900;
-  background:linear-gradient(135deg,
-    #00ffff 0%, 
-    #9a5cff 25%, 
-    #3a7bff 50%, 
-    #00ffff 75%, 
-    #9a5cff 100%
-  );
+  background:linear-gradient(135deg,#00ffff 0%, #9a5cff 25%, #3a7bff 50%, #00ffff 75%, #9a5cff 100%);
   background-size:400% 400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -311,6 +297,24 @@ h2{
   font-weight:600;
 }
 
+/* ===== OTHER ===== */
+.other{
+  text-align:center;
+  padding:80px 20px;
+}
+
+.other ul{
+  list-style:none;
+  color:#aaa;
+  font-size:1.2em;
+  line-height:1.8;
+}
+
+.other ul li::before{
+  content:"★ ";
+  color:#5ddcff;
+}
+
 /* ===== CONTACT ===== */
 .contact{
   display:grid;
@@ -350,6 +354,7 @@ h2{
 <a href="#about" data-i18n="about">About</a>
 <a href="#skills" data-i18n="skills">Skills</a>
 <a href="#projects" data-i18n="projects">Projects</a>
+<a href="#other" data-i18n="other">Other</a>
 <a href="#contact" data-i18n="contact">Contact</a>
 </div>
 </div>
@@ -437,6 +442,17 @@ Lethal Company mod that syncs the cruiser between players.
 </div>
 </section>
 
+<section id="other">
+<h2 data-i18n="other">Other</h2>
+<div class="other">
+<ul>
+<li data-i18n="b2">Certified B2 English level</li>
+<li data-i18n="algorea">Reached National Quarter-Finals of Concours Algoréa twice (Scratch)</li>
+<li data-i18n="ai">I use AI to assist with coding</li>
+</ul>
+</div>
+</section>
+
 <section id="contact">
 <h2 data-i18n="contact">Contact</h2>
 <div class="contact">
@@ -479,16 +495,11 @@ const dict={
   about:["About","À propos"],
   skills:["Skills","Compétences"],
   projects:["Projects","Projets"],
+  other:["Other","Autres"],
   contact:["Contact","Contact"],
   subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
-  desc:[
-    "French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.",
-    "Développeur français et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."
-  ],
-  aboutText:[
-    "I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.",
-    "Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."
-  ],
+  desc:["French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.","Développeur français et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."],
+  aboutText:["I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.","Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."],
   testing:["Game Testing","Tests de jeux"],
   mods:["Mods","Mods"],
   gt:["Game Testing","Tests de jeux"],
@@ -496,27 +507,15 @@ const dict={
   md:["Mod Development","Développement de mods"],
   mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],
   basic:["Basics","Bases"],
-  abyss:[
-    "Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.",
-    "Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."
-  ],
-  solvo:[
-    "Roblox multiplayer survival game centered around evading a killer.",
-    "Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."
-  ],
-  qac:[
-    "Multiple playtested games through QA Central, a hub for developers seeking testers.",
-    "Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."
-  ],
-  nrp:[
-    "Lethal Company performance mod removing rain particle effects.",
-    "Mod de performance pour Lethal Company supprimant les particules de pluie."
-  ],
-  bcs:[
-    "Lethal Company mod that syncs the cruiser between players.",
-    "Mod de synchronisation du camion entre les joueurs sur Lethal Company."
-  ],
-  email:["Email","Email"]
+  abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
+  solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."],
+  qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
+  nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
+  bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
+  email:["Email","Email"],
+  b2:["Certified B2 English level","Certification anglais B2"],
+  algorea:["Reached National Quarter-Finals of Concours Algoréa twice (Scratch)","Quart de finale national Concours Algoréa deux fois (Scratch)"],
+  ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"]
 };
 
 function toggleLang(){
