@@ -178,12 +178,14 @@ background:repeating-linear-gradient(
 background-size:200% 200%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-animation:textFlow 8s linear infinite;
+animation:textFlow 10s linear infinite;
 }
 
 @keyframes textFlow{
-to{background-position:300%}
+from{background-position:0% 50%}
+to{background-position:200% 50%}
 }
+
 
 .subtitle{font-size:1.6em;color:#ccc;margin:20px 0}
 .description{max-width:720px;margin:auto;color:#aaa;line-height:1.7}
