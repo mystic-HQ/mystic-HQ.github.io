@@ -167,11 +167,18 @@ padding:0 20px;
 .hero h1{
 font-size:4.5em;
 font-weight:900;
-background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff);
-background-size:300%;
+background:repeating-linear-gradient(
+135deg,
+#00ffff 0%,
+#9a5cff 25%,
+#3a7bff 50%,
+#9a5cff 75%,
+#00ffff 100%
+);
+background-size:200% 200%;
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-animation:textFlow 6s linear infinite;
+animation:textFlow 8s linear infinite;
 }
 
 @keyframes textFlow{
