@@ -69,7 +69,7 @@ body{
   100%{filter:blur(130px) brightness(1) saturate(1)}
 }
 
-/* ===== SLOW PARALLAX GLOW WITH COLOR SHIFT ===== */
+/* ===== SLOW PARALLAX GLOW ===== */
 .glow{
   position:absolute;
   width:500px;
@@ -77,7 +77,7 @@ body{
   border-radius:50%;
   filter:blur(160px);
   opacity:.35;
-  animation:glowDrift 18s ease-in-out infinite alternate, glowColor 30s ease-in-out infinite alternate;
+  animation:glowDrift 18s ease-in-out infinite alternate;
 }
 
 .glow.cyan{background:#00ffff;top:10%;left:10%}
@@ -88,14 +88,6 @@ body{
   0%{transform:translate(0,0)}
   50%{transform:translate(80px,-120px)}
   100%{transform:translate(-40px,60px)}
-}
-
-@keyframes glowColor{
-  0%{background:#00ffff}
-  25%{background:#9a5cff}
-  50%{background:#3a7bff}
-  75%{background:#00ffcc}
-  100%{background:#00ffff}
 }
 
 /* ===== GRAIN (FREE INLINE SVG) ===== */
@@ -118,13 +110,29 @@ body::after{
   will-change:transform;
 }
 
-.particles span.small{width:1px;height:1px;opacity:.25}
-.particles span.medium{width:2px;height:2px;opacity:.45}
-.particles span.large{width:3px;height:3px;opacity:.6;filter:blur(.3px)}
+.particles span.small{
+  width:1px;height:1px;
+  opacity:.25;
+}
+
+.particles span.medium{
+  width:2px;height:2px;
+  opacity:.45;
+}
+
+.particles span.large{
+  width:3px;height:3px;
+  opacity:.6;
+  filter:blur(.3px);
+}
 
 @keyframes particleDrift{
-  from{transform:translateY(120vh) translateX(0);}
-  to{transform:translateY(-20vh) translateX(140px);}
+  from{
+    transform:translateY(120vh) translateX(0);
+  }
+  to{
+    transform:translateY(-20vh) translateX(140px);
+  }
 }
 
 /* ================= UI ================= */
@@ -194,7 +202,13 @@ nav .container{
 .hero h1{
   font-size:4.5em;
   font-weight:900;
-  background:linear-gradient(135deg,#00ffff 0%, #9a5cff 25%, #3a7bff 50%, #00ffff 75%, #9a5cff 100%);
+  background:linear-gradient(135deg,
+    #00ffff 0%, 
+    #9a5cff 25%, 
+    #3a7bff 50%, 
+    #00ffff 75%, 
+    #9a5cff 100%
+  );
   background-size:400% 400%;
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
@@ -298,22 +312,14 @@ h2{
 }
 
 /* ===== OTHER ===== */
-.other{
+.other-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
   text-align:center;
-  padding:80px 20px;
 }
 
-.other ul{
-  list-style:none;
-  color:#aaa;
-  font-size:1.2em;
-  line-height:1.8;
-}
-
-.other ul li::before{
-  content:"★ ";
-  color:#5ddcff;
-}
+.other-grid p{color:#aaa}
 
 /* ===== CONTACT ===== */
 .contact{
@@ -444,12 +450,11 @@ Lethal Company mod that syncs the cruiser between players.
 
 <section id="other">
 <h2 data-i18n="other">Other</h2>
-<div class="other">
-<ul>
-<li data-i18n="b2">Certified B2 English level</li>
-<li data-i18n="algorea">Reached National Quarter-Finals of Concours Algoréa twice (Scratch)</li>
-<li data-i18n="ai">I use AI to assist with coding</li>
-</ul>
+<div class="other-grid">
+<p data-i18n="b2">Certified B2 English level</p>
+<p data-i18n="algorea">Reached National Quarter-Finals of Concours Algoréa twice (Scratch)</p>
+<p data-i18n="ai">I use AI to assist with coding</p>
+<p data-i18n="german">I speak a bit of German</p>
 </div>
 </section>
 
@@ -489,9 +494,10 @@ function showProjects(type,btn){
   btn.classList.add("active");
 }
 
-/* ===== LANGUAGE TOGGLE ===== */
-let fr=false;
-const dict={
+/* ===== LANGUAGE TOGGLE WITH HASH ===== */
+let fr = false; // default English
+
+const dict = {
   about:["About","À propos"],
   skills:["Skills","Compétences"],
   projects:["Projects","Projets"],
@@ -515,17 +521,35 @@ const dict={
   email:["Email","Email"],
   b2:["Certified B2 English level","Certification anglais B2"],
   algorea:["Reached National Quarter-Finals of Concours Algoréa twice (Scratch)","Quart de finale national Concours Algoréa deux fois (Scratch)"],
-  ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"]
+  ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"],
+  german:["I speak a bit of German","Je parle un peu allemand"]
 };
 
-function toggleLang(){
-  fr=!fr;
-  document.querySelector(".lang-toggle").textContent=fr?"EN":"FR";
-  document.querySelectorAll("[data-i18n]").forEach(e=>{
-    const k=e.dataset.i18n;
-    if(dict[k]) e.textContent=dict[k][fr?1:0];
+// Function to apply language
+function applyLang(){
+  document.querySelector(".lang-toggle").textContent = fr ? "EN" : "FR";
+  document.querySelectorAll("[data-i18n]").forEach(e => {
+    const k = e.dataset.i18n;
+    if(dict[k]) e.textContent = dict[k][fr?1:0];
   });
 }
+
+// Toggle button
+function toggleLang(){
+  fr = !fr;
+  applyLang();
+  history.replaceState(null, '', fr ? '#fr' : '#en');
+}
+
+// Check hash on page load
+window.addEventListener('load', () => {
+  if(window.location.hash === '#fr'){
+    fr = true;
+  } else if(window.location.hash === '#en'){
+    fr = false;
+  }
+  applyLang();
+});
 </script>
 
 </body>
