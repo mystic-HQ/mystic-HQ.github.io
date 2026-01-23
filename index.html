@@ -9,69 +9,75 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-font-family:Inter,system-ui,sans-serif;
-background:#05060a;
-color:#fff;
-overflow-x:hidden;
+  font-family:Inter,system-ui,sans-serif;
+  background:#05060a;
+  color:#fff;
+  overflow-x:hidden;
 }
 
 /* ================= BACKGROUND CORE ================= */
 .bg{
-position:fixed;
-inset:0;
-z-index:-3;
-background:radial-gradient(circle at top,#0c1224,#05060a 60%);
-overflow:hidden;
-isolation:isolate;
+  position:fixed;
+  inset:0;
+  z-index:-3;
+  background:radial-gradient(circle at top,#0c1224,#05060a 60%);
+  overflow:hidden;
+  isolation:isolate;
 }
 
 /* ===== ENHANCED AURORA ===== */
 .aurora{
-position:absolute;
-width:220%;
-height:220%;
-top:-60%;
-left:-60%;
-background:
-linear-gradient(120deg,
-rgba(0,255,255,.10),
-rgba(140,0,255,.10),
-rgba(0,150,255,.10),
-rgba(0,255,180,.06)
-);
-filter:blur(140px);
-animation:auroraMove 32s linear infinite;
-transform-origin:center;
-opacity:.85;
+  position:absolute;
+  width:220%;
+  height:220%;
+  top:-60%;
+  left:-60%;
+  background:
+    linear-gradient(120deg,
+      rgba(0,255,255,.08),
+      rgba(140,0,255,.08),
+      rgba(0,150,255,.08),
+      rgba(0,255,180,.05)
+    );
+  filter:blur(140px);
+  animation:auroraMove 32s linear infinite, auroraColor 15s ease-in-out infinite alternate;
+  transform-origin:center;
+  opacity:.85;
 }
 
 .aurora.second{
-animation:auroraMoveReverse 46s linear infinite;
-opacity:.55;
-transform:scale(1.15);
+  animation:auroraMoveReverse 46s linear infinite, auroraColor 18s ease-in-out infinite alternate;
+  opacity:.55;
+  transform:scale(1.15);
 }
 
 @keyframes auroraMove{
-0%{transform:rotate(0deg) translateY(0)}
-50%{transform:rotate(180deg) translateY(-6%)}
-100%{transform:rotate(360deg) translateY(0)}
+  0%{transform:rotate(0deg) translateY(0)}
+  50%{transform:rotate(180deg) translateY(-6%)}
+  100%{transform:rotate(360deg) translateY(0)}
 }
 
 @keyframes auroraMoveReverse{
-0%{transform:rotate(360deg) translateY(0)}
-50%{transform:rotate(180deg) translateY(8%)}
-100%{transform:rotate(0deg) translateY(0)}
+  0%{transform:rotate(360deg) translateY(0)}
+  50%{transform:rotate(180deg) translateY(8%)}
+  100%{transform:rotate(0deg) translateY(0)}
+}
+
+@keyframes auroraColor{
+  0%{filter:blur(120px) brightness(0.9) saturate(0.8)}
+  50%{filter:blur(150px) brightness(1.2) saturate(1.3)}
+  100%{filter:blur(130px) brightness(1) saturate(1)}
 }
 
 /* ===== SLOW PARALLAX GLOW ===== */
 .glow{
-position:absolute;
-width:500px;
-height:500px;
-border-radius:50%;
-filter:blur(160px);
-opacity:.35;
-animation:glowDrift 18s ease-in-out infinite alternate;
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  filter:blur(160px);
+  opacity:.35;
+  animation:glowDrift 18s ease-in-out infinite alternate;
 }
 
 .glow.cyan{background:#00ffff;top:10%;left:10%}
@@ -79,133 +85,140 @@ animation:glowDrift 18s ease-in-out infinite alternate;
 .glow.blue{background:#3a7bff;top:55%;left:55%}
 
 @keyframes glowDrift{
-0%{transform:translate(0,0)}
-50%{transform:translate(80px,-120px)}
-100%{transform:translate(-40px,60px)}
+  0%{transform:translate(0,0)}
+  50%{transform:translate(80px,-120px)}
+  100%{transform:translate(-40px,60px)}
 }
 
 /* ===== GRAIN (FREE INLINE SVG) ===== */
 body::after{
-content:"";
-position:fixed;
-inset:0;
-background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
-pointer-events:none;
-z-index:-1;
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:-1;
 }
 
 /* ===== ENHANCED PARTICLES ===== */
 .particles span{
-position:absolute;
-border-radius:50%;
-background:rgba(255,255,255,.85);
-opacity:.4;
-animation:particleDrift linear infinite;
-will-change:transform;
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.85);
+  opacity:.4;
+  animation:particleDrift linear infinite;
+  will-change:transform;
 }
 
 .particles span.small{
-width:1px;height:1px;
-opacity:.25;
+  width:1px;height:1px;
+  opacity:.25;
 }
 
 .particles span.medium{
-width:2px;height:2px;
-opacity:.45;
+  width:2px;height:2px;
+  opacity:.45;
 }
 
 .particles span.large{
-width:3px;height:3px;
-opacity:.6;
-filter:blur(.3px);
+  width:3px;height:3px;
+  opacity:.6;
+  filter:blur(.3px);
 }
 
 @keyframes particleDrift{
-from{
-transform:translateY(120vh) translateX(0);
-}
-to{
-transform:translateY(-20vh) translateX(140px);
-}
+  from{
+    transform:translateY(120vh) translateX(0);
+  }
+  to{
+    transform:translateY(-20vh) translateX(140px);
+  }
 }
 
 /* ================= UI ================= */
 .lang-toggle{
-position:fixed;
-bottom:20px;
-right:20px;
-z-index:200;
-background:rgba(10,10,20,.7);
-border:1px solid #5ddcff;
-color:#fff;
-padding:8px 14px;
-border-radius:20px;
-cursor:pointer;
-backdrop-filter:blur(6px);
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  z-index:200;
+  background:rgba(10,10,20,.7);
+  border:1px solid #5ddcff;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:20px;
+  cursor:pointer;
+  backdrop-filter:blur(6px);
 }
 
 /* ===== NAV ===== */
 nav{
-position:fixed;
-top:0;width:100%;
-background:rgba(5,6,10,.65);
-backdrop-filter:blur(12px);
-z-index:100;
-border-bottom:1px solid rgba(255,255,255,.08);
+  position:fixed;
+  top:0;width:100%;
+  background:rgba(5,6,10,.65);
+  backdrop-filter:blur(12px);
+  z-index:100;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 nav .container{
-max-width:1400px;
-margin:auto;
-padding:20px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+  max-width:1400px;
+  margin:auto;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .logo{
-font-weight:900;
-font-size:1.4em;
-background:linear-gradient(135deg,#00ffff,#9a5cff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+  font-weight:900;
+  font-size:1.4em;
+  background:linear-gradient(135deg,#00ffff,#9a5cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .nav-links{display:flex;gap:30px}
 .nav-links a{color:#fff;text-decoration:none;position:relative}
 .nav-links a::after{
-content:"";
-position:absolute;
-bottom:-5px;left:0;
-width:0;height:2px;
-background:linear-gradient(90deg,#00ffff,#9a5cff);
-transition:.3s;
+  content:"";
+  position:absolute;
+  bottom:-5px;left:0;
+  width:0;height:2px;
+  background:linear-gradient(90deg,#00ffff,#9a5cff);
+  transition:.3s;
 }
 .nav-links a:hover::after{width:100%}
 
 /* ================= HERO ================= */
 .hero{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-padding:0 20px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:0 20px;
 }
 
 .hero h1{
-font-size:4.5em;
-font-weight:900;
-background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff);
-background-size:300%;
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-animation:textFlow 8s linear infinite;
+  font-size:4.5em;
+  font-weight:900;
+  background:linear-gradient(135deg,
+    #00ffff 0%, 
+    #9a5cff 25%, 
+    #3a7bff 50%, 
+    #00ffff 75%, 
+    #9a5cff 100%
+  );
+  background-size:400% 400%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:textFlow 12s ease infinite;
 }
 
 @keyframes textFlow{
-0%{background-position:0%}
-100%{background-position:300%}
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
 }
 
 .subtitle{font-size:1.6em;color:#ccc;margin:20px 0}
@@ -215,95 +228,95 @@ animation:textFlow 8s linear infinite;
 section{padding:100px 20px;max-width:1400px;margin:auto}
 
 h2{
-text-align:center;
-font-size:2.8em;
-margin-bottom:60px;
-background:linear-gradient(135deg,#5ddcff,#9a5cff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+  text-align:center;
+  font-size:2.8em;
+  margin-bottom:60px;
+  background:linear-gradient(135deg,#5ddcff,#9a5cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 /* ===== SKILLS ===== */
 .skills-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
 }
 
 .skill-card{
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.12);
-transition:.4s;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  transition:.4s;
 }
 
 .skill-card:hover{
-transform:translateY(-8px);
-box-shadow:0 20px 40px rgba(90,160,255,.25);
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(90,160,255,.25);
 }
 
 /* ===== PROJECTS ===== */
 .project-tabs{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-bottom:40px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:40px;
 }
 
 .project-tabs button{
-padding:10px 26px;
-border-radius:30px;
-border:1px solid #5ddcff;
-background:none;
-color:#fff;
-cursor:pointer;
-transition:.3s;
+  padding:10px 26px;
+  border-radius:30px;
+  border:1px solid #5ddcff;
+  background:none;
+  color:#fff;
+  cursor:pointer;
+  transition:.3s;
 }
 
 .project-tabs button.active{
-background:linear-gradient(135deg,#5ddcff,#9a5cff);
-color:#000;
+  background:linear-gradient(135deg,#5ddcff,#9a5cff);
+  color:#000;
 }
 
 .projects-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
 }
 
 .project-card{
-padding:30px;
-border-radius:20px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,255,255,.15);
-transition:.4s;
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.15);
+  transition:.4s;
 }
 
 .project-card:hover{
-transform:translateY(-10px);
-box-shadow:0 20px 50px rgba(150,100,255,.3);
+  transform:translateY(-10px);
+  box-shadow:0 20px 50px rgba(150,100,255,.3);
 }
 
 .project-card p{color:#aaa;margin-top:10px}
 
 .project-link{
-display:inline-block;
-margin-top:15px;
-padding:8px 22px;
-border-radius:20px;
-background:linear-gradient(135deg,#9a5cff,#5ddcff);
-color:#000;
-text-decoration:none;
-font-weight:600;
+  display:inline-block;
+  margin-top:15px;
+  padding:8px 22px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#9a5cff,#5ddcff);
+  color:#000;
+  text-decoration:none;
+  font-weight:600;
 }
 
 /* ===== CONTACT ===== */
 .contact{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:30px;
-text-align:center;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  text-align:center;
 }
 
 .contact p{color:#aaa}
@@ -311,8 +324,8 @@ text-align:center;
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-.hero h1{font-size:3em}
-.nav-links{display:none}
+  .hero h1{font-size:3em}
+  .nav-links{display:none}
 }
 </style>
 </head>
@@ -443,76 +456,76 @@ Lethal Company mod that syncs the cruiser between players.
 const p=document.getElementById("particles");
 const sizes=["small","medium","large"];
 for(let i=0;i<70;i++){
-const s=document.createElement("span");
-const size=sizes[Math.floor(Math.random()*sizes.length)];
-s.classList.add(size);
-s.style.left=Math.random()*100+"%";
-s.style.animationDuration=18+Math.random()*25+"s";
-s.style.animationDelay=Math.random()*-40+"s";
-p.appendChild(s);
+  const s=document.createElement("span");
+  const size=sizes[Math.floor(Math.random()*sizes.length)];
+  s.classList.add(size);
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=18+Math.random()*25+"s";
+  s.style.animationDelay=Math.random()*-40+"s";
+  p.appendChild(s);
 }
 
 /* ===== PROJECT SWITCH ===== */
 function showProjects(type,btn){
-document.getElementById("testing").style.display=type==="testing"?"grid":"none";
-document.getElementById("mods").style.display=type==="mods"?"grid":"none";
-document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
+  document.getElementById("testing").style.display=type==="testing"?"grid":"none";
+  document.getElementById("mods").style.display=type==="mods"?"grid":"none";
+  document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
 }
 
 /* ===== LANGUAGE TOGGLE ===== */
 let fr=false;
 const dict={
-about:["About","À propos"],
-skills:["Skills","Compétences"],
-projects:["Projects","Projets"],
-contact:["Contact","Contact"],
-subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
-desc:[
-"Developer and game tester providing structured playtesting, bug reports, and gameplay feedback.",
-"Développeur et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."
-],
-aboutText:[
-"I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows clear communication with developers and actionable testing results.",
-"Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting, sans avoir forcément besoin du code."
-],
-testing:["Game Testing","Tests de jeux"],
-mods:["Mods","Mods"],
-gt:["Game Testing","Tests de jeux"],
-gtDesc:["Playtesting, QA reports, balance feedback","Playtesting, rapports QA, équilibrage"],
-md:["Mod Development","Développement de mods"],
-mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],
-basic:["Basics","Bases"],
-abyss:[
-"Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.",
-"Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."
-],
-solvo:[
-"Roblox multiplayer survival game centered around evading a killer.",
-"Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."
-],
-qac:[
-"Multiple playtested games through QA Central, a hub for developers seeking testers.",
-"Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."
-],
-nrp:[
-"Lethal Company performance mod removing rain particle effects.",
-"Mod de performance pour Lethal Company supprimant les particules de pluie."
-],
-bcs:[
-"Lethal Company mod that syncs the cruiser between players.",
-"Mod de synchronisation du camion entre les joueurs sur Lethal Company."
-],
-email:["Email","Email"]
+  about:["About","À propos"],
+  skills:["Skills","Compétences"],
+  projects:["Projects","Projets"],
+  contact:["Contact","Contact"],
+  subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
+  desc:[
+    "Developer and game tester providing structured playtesting, bug reports, and gameplay feedback.",
+    "Développeur et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."
+  ],
+  aboutText:[
+    "I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows clear communication with developers and actionable testing results.",
+    "Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting, sans avoir forcément besoin du code."
+  ],
+  testing:["Game Testing","Tests de jeux"],
+  mods:["Mods","Mods"],
+  gt:["Game Testing","Tests de jeux"],
+  gtDesc:["Playtesting, QA reports, balance feedback","Playtesting, rapports QA, équilibrage"],
+  md:["Mod Development","Développement de mods"],
+  mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],
+  basic:["Basics","Bases"],
+  abyss:[
+    "Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.",
+    "Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."
+  ],
+  solvo:[
+    "Roblox multiplayer survival game centered around evading a killer.",
+    "Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."
+  ],
+  qac:[
+    "Multiple playtested games through QA Central, a hub for developers seeking testers.",
+    "Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."
+  ],
+  nrp:[
+    "Lethal Company performance mod removing rain particle effects.",
+    "Mod de performance pour Lethal Company supprimant les particules de pluie."
+  ],
+  bcs:[
+    "Lethal Company mod that syncs the cruiser between players.",
+    "Mod de synchronisation du camion entre les joueurs sur Lethal Company."
+  ],
+  email:["Email","Email"]
 };
 
 function toggleLang(){
-fr=!fr;
-document.querySelector(".lang-toggle").textContent=fr?"EN":"FR";
-document.querySelectorAll("[data-i18n]").forEach(e=>{
-const k=e.dataset.i18n;
-if(dict[k]) e.textContent=dict[k][fr?1:0];
-});
+  fr=!fr;
+  document.querySelector(".lang-toggle").textContent=fr?"EN":"FR";
+  document.querySelectorAll("[data-i18n]").forEach(e=>{
+    const k=e.dataset.i18n;
+    if(dict[k]) e.textContent=dict[k][fr?1:0];
+  });
 }
 </script>
 
