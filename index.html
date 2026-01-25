@@ -48,11 +48,40 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .project-tabs button{padding:10px 26px;border-radius:30px;border:1px solid #5ddcff;background:none;color:#fff;cursor:pointer;transition:.3s}
 .project-tabs button.active{background:linear-gradient(135deg,#5ddcff,#9a5cff);color:#000}
 
+/* ---------------- PROJECT CARDS FIXED ---------------- */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
-.project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative}
-.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3)}
-.project-card p{color:#aaa;margin-top:10px}
-.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600}
+.project-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Pushes button down */
+  padding:30px;
+  border-radius:20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.15);
+  transition:.4s;
+  position:relative;
+  min-height:260px;
+  box-sizing:border-box;
+}
+.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3);}
+.project-card p{color:#aaa;margin-top:10px;flex-grow:1}
+
+/* ---------------- VIEW BUTTON FIXED ---------------- */
+.view-btn{
+  display:inline-block; /* fixes overlap for <a> links */
+  margin-top:15px;
+  padding:8px 22px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#9a5cff,#5ddcff);
+  color:#000;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  text-decoration:none; /* removes underline for <a> */
+  text-align:center;
+  transition: transform 0.3s;
+}
+.view-btn:hover{transform:scale(1.05)}
 
 /* ---------------- CONTACT ---------------- */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
