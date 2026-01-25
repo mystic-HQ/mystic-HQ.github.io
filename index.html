@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mystic's Portfolio</title>
 <meta name="description" content="Mystic - French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.">
-<meta name="keywords" content="game tester, QA, developer, playtesting, Roblox">
+<meta name="keywords" content="game tester, QA, developer, playtesting, mods, Roblox">
 <meta name="author" content="Mystic">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overflow-x:hidden;transition:all .3s}
+body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overflow-x:hidden}
 html{scroll-behavior:smooth}
-nav{position:fixed;top:0;width:100%;background:rgba(5,6,10,.65);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,.08);transition:all .3s}
+nav{position:fixed;top:0;width:100%;background:rgba(5,6,10,.65);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,.08)}
 nav .container{max-width:1400px;margin:auto;padding:20px 40px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:1.4em;background:linear-gradient(135deg,#00ffff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .3s}
+.logo{font-weight:900;font-size:1.4em;background:linear-gradient(135deg,#00ffff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .nav-links{display:flex;gap:30px}
 .nav-links a{color:#fff;text-decoration:none;position:relative}
 .nav-links a::after{content:"";position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,#00ffff,#9a5cff);transition:.3s}
 .nav-links a:hover::after{width:100%}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px;transition:all .3s}
-.hero h1{font-size:4.5em;font-weight:900;background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff,#9a5cff);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:textFlow 12s ease infinite;transition:all .3s}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px}
+.hero h1{font-size:4.5em;font-weight:900;background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff,#9a5cff);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:textFlow 12s ease infinite}
 @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.subtitle{font-size:1.6em;color:#ccc;margin:20px 0;transition:all .3s}
-.description{max-width:720px;margin:auto;color:#aaa;line-height:1.7;transition:all .3s}
-section{padding:100px 20px;max-width:1400px;margin:auto;transition:all .3s}
-h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradient(135deg,#5ddcff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .3s}
+.subtitle{font-size:1.6em;color:#ccc;margin:20px 0}
+.description{max-width:720px;margin:auto;color:#aaa;line-height:1.7}
+section{padding:100px 20px;max-width:1400px;margin:auto}
+h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradient(135deg,#5ddcff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
 .skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s}
 .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(90,160,255,.25)}
@@ -32,25 +32,54 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative}
 .project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3)}
 .project-card p{color:#aaa;margin-top:10px}
-.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600;transition:all .3s}
+.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600}
 .other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
 .other-grid p{color:#aaa}
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
 .contact p{color:#aaa}
 .contact a{color:#5ddcff;text-decoration:none}
-.toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.lang-toggle, .toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.toggle-effects{right:150px}
+
+/* Aurora / particles background */
+#bg-container{position:fixed;inset:0;z-index:-3;overflow:hidden;isolation:isolate}
+.aurora{position:absolute;width:220%;height:220%;top:-60%;left:-60%;background:linear-gradient(120deg,rgba(0,255,255,.08),rgba(140,0,255,.08),rgba(0,150,255,.08),rgba(0,255,180,.05));filter:blur(140px);animation:auroraMove 32s linear infinite, auroraColor 15s ease-in-out infinite alternate;transform-origin:center;opacity:.85}
+.aurora.second{animation:auroraMoveReverse 46s linear infinite, auroraColor 18s ease-in-out infinite alternate;opacity:.55;transform:scale(1.15)}
+@keyframes auroraMove{0%{transform:rotate(0deg) translateY(0)}50%{transform:rotate(180deg) translateY(-6%)}100%{transform:rotate(360deg) translateY(0)}}
+@keyframes auroraMoveReverse{0%{transform:rotate(360deg) translateY(0)}50%{transform:rotate(180deg) translateY(8%)}100%{transform:rotate(0deg) translateY(0)}}
+@keyframes auroraColor{0%{filter:blur(120px) brightness(0.9) saturate(0.8)}50%{filter:blur(150px) brightness(1.2) saturate(1.3)}100%{filter:blur(130px) brightness(1) saturate(1)}}
+.glow{position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(160px);opacity:.35;animation:glowDrift 18s ease-in-out infinite alternate}
+.glow.cyan{background:#00ffff;top:10%;left:10%}
+.glow.purple{background:#9a5cff;bottom:10%;right:15%}
+.glow.blue{background:#3a7bff;top:55%;left:55%}
+@keyframes glowDrift{0%{transform:translate(0,0)}50%{transform:translate(80px,-120px)}100%{transform:translate(-40px,60px)}}
+.particles span{position:absolute;border-radius:50%;background:rgba(255,255,255,.85);opacity:.4;animation:particleDrift linear infinite;will-change:transform}
+.particles span.small{width:1px;height:1px;opacity:.25}
+.particles span.medium{width:2px;height:2px;opacity:.45}
+.particles span.large{width:3px;height:3px;opacity:.6;filter:blur(.3px)}
+@keyframes particleDrift{from{transform:translateY(120vh) translateX(0)}to{transform:translateY(-20vh) translateX(140px)}}
+body.no-effects #bg-container{display:none}
+
+/* Modal */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:300;padding:20px}
 .modal-content{background:#111;border-radius:20px;padding:30px;max-width:500px;width:100%;position:relative;text-align:center}
 .modal-content img{max-width:150px;margin-bottom:20px;border-radius:12px}
 .modal-content .close{position:absolute;top:15px;right:15px;cursor:pointer;font-size:20px;color:#fff}
-body.no-effects *{animation:none !important;transform:none !important;box-shadow:none !important;background:none !important;border:none !important;background-color:#111 !important;color:#fff !important}
-body.no-effects .logo{-webkit-background-clip:text;-webkit-text-fill-color:#fff;background:none;color:#fff}
-body.no-effects h2{-webkit-background-clip:text;-webkit-text-fill-color:#fff;background:none;color:#fff}
-body.no-effects .view-btn{background:#5ddcff;color:#000}
+
 @media(max-width:768px){.hero h1{font-size:3em}.nav-links{display:none}}
 </style>
 </head>
 <body>
+
+<!-- Background -->
+<div id="bg-container">
+  <div class="aurora"></div>
+  <div class="aurora second"></div>
+  <div class="glow cyan"></div>
+  <div class="glow purple"></div>
+  <div class="glow blue"></div>
+  <div class="particles" id="particles"></div>
+</div>
 
 <nav>
   <div class="container">
@@ -69,18 +98,13 @@ body.no-effects .view-btn{background:#5ddcff;color:#000}
   <div>
     <h1>Mystic</h1>
     <div class="subtitle">Developer & Game Tester</div>
-    <p class="description">
-      French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.
-    </p>
+    <p class="description">French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.</p>
   </div>
 </section>
 
 <section id="about">
   <h2>About</h2>
-  <p class="description">
-    I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback.
-    My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.
-  </p>
+  <p class="description">I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.</p>
 </section>
 
 <section id="skills">
@@ -96,26 +120,43 @@ body.no-effects .view-btn{background:#5ddcff;color:#000}
 
 <section id="projects">
   <h2>Projects</h2>
+  <div class="project-tabs">
+    <button class="active" onclick="showProjects('testing', this)">Game Testing</button>
+    <button onclick="showProjects('mods', this)">Mods</button>
+  </div>
+
+  <!-- Game Testing -->
   <div class="projects-grid" id="testing">
-    <div class="project-card" 
-         data-info='{"position":"Veteran QA for Abyss","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
+    <div class="project-card" data-info='{"position":"Veteran QA for Abyss","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
       <h3>Abyss</h3>
       <p>Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.</p>
       <button class="view-btn">View</button>
     </div>
 
-    <div class="project-card" 
-         data-info='{"position":"QA for Solvo","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
+    <div class="project-card" data-info='{"position":"QA for Solvo","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
       <h3>Solvo</h3>
       <p>Roblox multiplayer survival game centered around evading a killer.</p>
       <button class="view-btn">View</button>
     </div>
 
-    <div class="project-card" 
-         data-info='{"position":"QA for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
+    <div class="project-card" data-info='{"position":"QA for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
       <h3>QA Central</h3>
       <p>Multiple playtested games through QA Central, a hub for developers seeking testers.</p>
       <button class="view-btn">View</button>
+    </div>
+  </div>
+
+  <!-- Mods -->
+  <div class="projects-grid" id="mods" style="display:none">
+    <div class="project-card">
+      <h3>NoRainParticles</h3>
+      <p>Lethal Company performance mod removing rain particle effects.</p>
+      <button class="view-btn" data-link="https://github.com/mystic-HQ/NoRainParticles">View</button>
+    </div>
+    <div class="project-card">
+      <h3>BetterCruiserSync</h3>
+      <p>Lethal Company mod that syncs the cruiser between players.</p>
+      <button class="view-btn" data-link="https://github.com/mystic-HQ/BetterCruiserSync">View</button>
     </div>
   </div>
 </section>
@@ -148,7 +189,7 @@ body.no-effects .view-btn{background:#5ddcff;color:#000}
 
 <button class="toggle-effects">Disable Effects</button>
 
-<!-- Modal -->
+<!-- Modal for Game Testing -->
 <div class="modal" id="projectModal">
   <div class="modal-content">
     <span class="close">&times;</span>
@@ -161,14 +202,37 @@ body.no-effects .view-btn{background:#5ddcff;color:#000}
 </div>
 
 <script>
-/* Disable/Enable Effects */
+// Aurora particles
+const p=document.getElementById("particles");
+const sizes=["small","medium","large"];
+for(let i=0;i<70;i++){
+  const s=document.createElement("span");
+  const size=sizes[Math.floor(Math.random()*sizes.length)];
+  s.classList.add(size);
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=18+Math.random()*25+"s";
+  s.style.animationDelay=Math.random()*-40+"s";
+  p.appendChild(s);
+}
+
+// Toggle tabs
+function showProjects(type,btn){
+  document.getElementById("testing").style.display=type==="testing"?"grid":"none";
+  document.getElementById("mods").style.display=type==="mods"?"grid":"none";
+  document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+// Effects toggle
 const toggleEffectsBtn = document.querySelector(".toggle-effects");
+let effectsEnabled = true;
 toggleEffectsBtn.addEventListener("click", ()=>{
-  document.body.classList.toggle("no-effects");
-  toggleEffectsBtn.textContent = document.body.classList.contains("no-effects") ? "Enable Effects" : "Disable Effects";
+  effectsEnabled = !effectsEnabled;
+  document.body.classList.toggle("no-effects", !effectsEnabled);
+  toggleEffectsBtn.textContent = effectsEnabled ? "Disable Effects" : "Enable Effects";
 });
 
-/* Modal functionality */
+// Modal for Game Testing
 const modal = document.getElementById("projectModal");
 const modalImage = document.getElementById("modalImage");
 const modalTitle = document.getElementById("modalTitle");
@@ -176,7 +240,7 @@ const modalPosition = document.getElementById("modalPosition");
 const modalStatus = document.getElementById("modalStatus");
 const modalLink = document.getElementById("modalLink");
 
-document.querySelectorAll(".view-btn").forEach(btn=>{
+document.querySelectorAll("#testing .view-btn").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     const card = btn.parentElement;
     const info = JSON.parse(card.getAttribute("data-info"));
@@ -192,7 +256,12 @@ document.querySelectorAll(".view-btn").forEach(btn=>{
 document.querySelector(".modal .close").addEventListener("click", ()=>modal.style.display="none");
 window.addEventListener("click", e=>{if(e.target===modal) modal.style.display="none"});
 
-/* Smooth scrolling */
+// Mods open link directly
+document.querySelectorAll("#mods .view-btn").forEach(btn=>{
+  btn.addEventListener("click", ()=>window.open(btn.dataset.link,"_blank"));
+});
+
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(link=>{
   link.addEventListener('click', e=>{
     e.preventDefault();
