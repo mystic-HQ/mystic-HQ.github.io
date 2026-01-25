@@ -69,6 +69,17 @@ body.no-effects #bg-container{display:none}
 .modal-content img{max-width:150px;margin-bottom:20px;border-radius:12px}
 .modal-content .close{position:absolute;top:15px;right:15px;cursor:pointer;font-size:20px;color:#fff}
 
+.status-active {
+  color: #0f0; /* bright green */
+  font-weight: 600;
+}
+
+.status-inactive {
+  color: #f33; /* red */
+  font-weight: 600;
+}
+
+
 @media(max-width:768px){.hero h1{font-size:3em}.nav-links{display:none}}
 </style>
 </head>
@@ -142,7 +153,7 @@ body.no-effects #bg-container{display:none}
       <button class="view-btn">View</button>
     </div>
 
-    <div class="project-card" data-info='{"position":"QA for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
+    <div class="project-card" data-info='{"position":"Tested for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
       <h3>QA Central</h3>
       <p>Multiple playtested games through QA Central, a hub for developers seeking testers.</p>
       <button class="view-btn">View</button>
@@ -251,6 +262,7 @@ document.querySelectorAll("#testing .view-btn").forEach(btn=>{
     modalTitle.textContent = card.querySelector("h3").textContent;
     modalPosition.textContent = info.position;
     modalStatus.textContent = info.status;
+    modalStatus.className = info.status.toLowerCase() === "active" ? "status-active" : "status-inactive";
     modalLink.href = info.link;
     modalImage.src = info.image;
   });
@@ -273,6 +285,10 @@ document.querySelectorAll('a[href^="#"]').forEach(link=>{
   });
 });
 </script>
+  
+<footer style="text-align:center;color:#555;padding:30px 0;font-size:0.9em;">
+  Mystic-HQ 2026
+</footer>
 
 </body>
 </html>
