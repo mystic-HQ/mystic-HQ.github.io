@@ -34,7 +34,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 
 /* ---------------- SKILLS ---------------- */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;justify-content:center;text-align:center}
-.skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s}
+.skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s;display:flex;flex-direction:column;justify-content:space-between}
 .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(90,160,255,.25)}
 .skills-grid .skill-card:nth-child(5){grid-column:1/-1;justify-self:center}
 
@@ -48,40 +48,11 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .project-tabs button{padding:10px 26px;border-radius:30px;border:1px solid #5ddcff;background:none;color:#fff;cursor:pointer;transition:.3s}
 .project-tabs button.active{background:linear-gradient(135deg,#5ddcff,#9a5cff);color:#000}
 
-/* ---------------- PROJECT CARDS FIXED ---------------- */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
-.project-card{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Pushes button down */
-  padding:30px;
-  border-radius:20px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.15);
-  transition:.4s;
-  position:relative;
-  min-height:260px;
-  box-sizing:border-box;
-}
-.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3);}
-.project-card p{color:#aaa;margin-top:10px;flex-grow:1}
-
-/* ---------------- VIEW BUTTON FIXED ---------------- */
-.view-btn{
-  display:inline-block; /* fixes overlap for <a> links */
-  margin-top:15px;
-  padding:8px 22px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#9a5cff,#5ddcff);
-  color:#000;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  text-decoration:none; /* removes underline for <a> */
-  text-align:center;
-  transition: transform 0.3s;
-}
-.view-btn:hover{transform:scale(1.05)}
+.project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3)}
+.project-card p{color:#aaa;margin-top:10px}
+.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600;text-align:center;display:inline-block}
 
 /* ---------------- CONTACT ---------------- */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
@@ -89,8 +60,20 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .contact a{color:#5ddcff;text-decoration:none}
 
 /* ---------------- BUTTONS ---------------- */
-.lang-toggle, .toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
-.toggle-effects{right:150px}
+.toggle-effects,.lang-toggle {
+  position: fixed;
+  bottom: 20px;
+  z-index: 200;
+  background: rgba(10,10,20,0.7);
+  border: 1px solid #5ddcff;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+.toggle-effects { right: 20px; }
+.lang-toggle { right: 150px; }
 
 /* ---------------- MODAL ---------------- */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:300;padding:20px}
@@ -141,11 +124,11 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
   <div class="container">
     <div class="logo">MYSTIC</div>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#other">Other</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-key="about"></a>
+      <a href="#skills" data-key="skills"></a>
+      <a href="#projects" data-key="projects"></a>
+      <a href="#other" data-key="other"></a>
+      <a href="#contact" data-key="contact"></a>
     </div>
   </div>
 </nav>
@@ -153,32 +136,21 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 <section class="hero">
   <div>
     <h1>Mystic</h1>
-    <div class="subtitle">Developer & Game Tester</div>
-    <p class="description">
-      French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.
-    </p>
+    <div class="subtitle"></div>
+    <p class="description"></p>
   </div>
 </section>
 
 <section id="about">
-  <h2>About</h2>
-  <p class="description">
-    I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback.
-    My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.
-  </p>
+  <h2></h2>
+  <p class="description"></p>
 </section>
 
 <section id="skills">
-  <h2>Skills</h2>
+  <h2></h2>
   <div class="skills-grid">
-    <div class="skill-card">
-      <h3>Game Testing</h3>
-      <p>Playtesting, QA reports, balance feedback</p>
-    </div>
-    <div class="skill-card">
-      <h3>Mod Development</h3>
-      <p>Gameplay mods, scripting improvements</p>
-    </div>
+    <div class="skill-card"><h3>Game Testing</h3><p>Basics</p></div>
+    <div class="skill-card"><h3>Mod Development</h3><p>Basics</p></div>
     <div class="skill-card"><h3>Python</h3><p>Basics</p></div>
     <div class="skill-card"><h3>AutoHotkey</h3><p>Basics</p></div>
     <div class="skill-card"><h3>3D Modelling</h3><p>Basics</p></div>
@@ -186,62 +158,57 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 </section>
 
 <section id="projects">
-  <h2>Projects</h2>
+  <h2></h2>
   <div class="project-tabs">
-    <button class="active" onclick="showProjects('testing', this)">Game Testing</button>
-    <button onclick="showProjects('mods', this)">Mods</button>
+    <button class="active" onclick="showProjects('testing', this)" data-key="testing"></button>
+    <button onclick="showProjects('mods', this)" data-key="mods"></button>
   </div>
 
   <div class="projects-grid" id="testing">
-    <div class="project-card" 
-         data-info='{"position":"Veteran QA for Abyss","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
+    <div class="project-card" data-info='{"title":"Abyss","position":"Veteran QA for Abyss","status":"Active","link":"https://discord.gg/deepspirit","image":"https://via.placeholder.com/150"}'>
       <h3>Abyss</h3>
-      <p>Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.</p>
-      <button class="view-btn">View</button>
+      <p>Roblox game by Deep Spirit Games</p>
+      <button class="view-btn" onclick="openModal(this)">View</button>
     </div>
-
-    <div class="project-card" 
-         data-info='{"position":"QA for Solvo","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
+    <div class="project-card" data-info='{"title":"Solvo","position":"QA for Solvo","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"https://via.placeholder.com/150"}'>
       <h3>Solvo</h3>
-      <p>Roblox multiplayer survival game centered around evading a killer.</p>
-      <button class="view-btn">View</button>
+      <p>Roblox survival multiplayer</p>
+      <button class="view-btn" onclick="openModal(this)">View</button>
     </div>
-
-    <div class="project-card" 
-         data-info='{"position":"QA for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
+    <div class="project-card" data-info='{"title":"QA Central","position":"QA for multiple games","status":"Active","link":"https://discord.gg/qac","image":"https://via.placeholder.com/150"}'>
       <h3>QA Central</h3>
-      <p>Multiple playtested games through QA Central, a hub for developers seeking testers.</p>
-      <button class="view-btn">View</button>
+      <p>Hub for developers seeking testers</p>
+      <button class="view-btn" onclick="openModal(this)">View</button>
     </div>
   </div>
 
   <div class="projects-grid" id="mods" style="display:none">
     <div class="project-card">
       <h3>NoRainParticles</h3>
-      <p>Lethal Company performance mod removing rain particle effects.</p>
-      <a class="view-btn" href="https://github.com/mystic-HQ/NoRainParticles" target="_blank">View</a>
+      <p>Removes rain particles in Lethal Company</p>
+      <a class="view-btn" href="#" target="_blank">View</a>
     </div>
     <div class="project-card">
       <h3>BetterCruiserSync</h3>
-      <p>Lethal Company mod that syncs the cruiser between players.</p>
-      <a class="view-btn" href="https://github.com/mystic-HQ/BetterCruiserSync" target="_blank">View</a>
+      <p>Syncs cruiser between players</p>
+      <a class="view-btn" href="#" target="_blank">View</a>
     </div>
   </div>
 </section>
 
 <section id="other">
-  <h2>Other</h2>
+  <h2></h2>
   <div class="other-grid">
-    <p>Certified Cambridge B2 English level</p>
-    <p>Reached Quarter-Finals of national contest Algoréa twice (Scratch)</p>
-    <p>I use AI to assist with coding</p>
-    <p>I speak a bit of German</p>
-    <p>Worked on the wiki for the game Abyss</p>
+    <p>Cambridge B2 English certified</p>
+    <p>Algoréa contest quarter-finals</p>
+    <p>Uses AI for coding assistance</p>
+    <p>Speaks a bit of German</p>
+    <p>Add me on Discord</p>
   </div>
 </section>
 
 <section id="contact">
-  <h2>Contact</h2>
+  <h2></h2>
   <div class="contact">
     <div>
       <p>Email</p>
@@ -258,80 +225,92 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 <footer>Mystic-HQ 2026</footer>
 
 <button class="toggle-effects">Disable Effects</button>
+<button class="lang-toggle" id="langToggle">FR</button>
 
 <!-- Modal -->
 <div class="modal" id="projectModal">
   <div class="modal-content">
-    <span class="close">&times;</span>
+    <span class="close" onclick="closeModal()">&times;</span>
     <img id="modalImage" src="" alt="Project Image">
     <h3 id="modalTitle"></h3>
     <p><strong>Position:</strong> <span id="modalPosition"></span></p>
-    <p><strong>Status:</strong> <span id="modalStatus" class="status-active"></span></p>
+    <p><strong>Status:</strong> <span id="modalStatus"></span></p>
     <a id="modalLink" href="#" target="_blank">Visit</a>
   </div>
 </div>
 
 <script>
-/* ---------------- Particles ---------------- */
-const particlesContainer = document.getElementById("particles");
-for(let i=0;i<60;i++){
-  const p = document.createElement("span");
-  const size = ["small","medium","large"][Math.floor(Math.random()*3)];
-  p.className = size;
-  p.style.top=Math.random()*100+"%";
-  p.style.left=Math.random()*100+"%";
-  p.style.animationDuration=(10+Math.random()*20)+"s";
-  particlesContainer.appendChild(p);
+// ---------------- LANGUAGE ----------------
+let fr = false;
+const dict = {
+  about:["About","À propos"],
+  skills:["Skills","Compétences"],
+  projects:["Projects","Projets"],
+  other:["Other","Autres"],
+  contact:["Contact","Contact"],
+  subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
+  desc:["French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.","Développeur français et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."],
+  aboutText:["I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.","Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."]
+};
+
+function updateLanguage(){
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const key = el.getAttribute('data-key');
+    if(dict[key]) el.textContent = dict[key][fr?1:0];
+  });
+  document.querySelector('.subtitle').textContent = dict.subtitle[fr?1:0];
+  document.querySelector('.hero .description').textContent = dict.desc[fr?1:0];
+  document.querySelector('#about .description').textContent = dict.aboutText[fr?1:0];
 }
 
-/* ---------------- Effects toggle ---------------- */
-const auroras = document.querySelectorAll(".aurora, .glow, .particles");
-document.querySelector(".toggle-effects").addEventListener("click", ()=>{
-  auroras.forEach(e=>e.style.display = e.style.display==="none"?"block":"none");
-  document.querySelector(".toggle-effects").textContent = document.querySelector(".toggle-effects").textContent==="Disable Effects"?"Enable Effects":"Disable Effects";
+document.getElementById('langToggle').addEventListener('click',()=>{
+  fr = !fr;
+  document.getElementById('langToggle').textContent = fr?'EN':'FR';
+  updateLanguage();
+});
+updateLanguage();
+
+// ---------------- EFFECTS ----------------
+let effectsEnabled = true;
+document.querySelector('.toggle-effects').addEventListener('click',()=>{
+  effectsEnabled = !effectsEnabled;
+  document.querySelector('.bg').style.display = effectsEnabled?'block':'none';
+  document.querySelector('.toggle-effects').textContent = effectsEnabled?'Disable Effects':'Enable Effects';
 });
 
-/* ---------------- Tabs ---------------- */
-function showProjects(type, btn){
-  document.getElementById("testing").style.display = type==="testing"?"grid":"none";
-  document.getElementById("mods").style.display = type==="mods"?"grid":"none";
-  document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove("active"));
-  btn.classList.add("active");
+// ---------------- PROJECT MODAL ----------------
+function openModal(btn){
+  const card = btn.closest('.project-card');
+  const info = JSON.parse(card.dataset.info);
+  document.getElementById('modalImage').src = info.image;
+  document.getElementById('modalTitle').textContent = info.title;
+  document.getElementById('modalPosition').textContent = info.position;
+  document.getElementById('modalStatus').textContent = info.status;
+  document.getElementById('modalLink').href = info.link;
+  document.getElementById('projectModal').style.display = 'flex';
+}
+function closeModal(){document.getElementById('projectModal').style.display='none'}
+
+// ---------------- PROJECT TABS ----------------
+function showProjects(id, btn){
+  document.querySelectorAll('.projects-grid').forEach(grid=>grid.style.display='none');
+  document.getElementById(id).style.display='grid';
+  document.querySelectorAll('.project-tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 }
 
-/* ---------------- Modal ---------------- */
-const modal = document.getElementById("projectModal");
-const modalImage = document.getElementById("modalImage");
-const modalTitle = document.getElementById("modalTitle");
-const modalPosition = document.getElementById("modalPosition");
-const modalStatus = document.getElementById("modalStatus");
-const modalLink = document.getElementById("modalLink");
-
-document.querySelectorAll("#testing .view-btn").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    const card = btn.parentElement;
-    const info = JSON.parse(card.getAttribute("data-info"));
-    modal.style.display = "flex";
-    modalTitle.textContent = card.querySelector("h3").textContent;
-    modalPosition.textContent = info.position;
-    modalStatus.textContent = info.status;
-    modalStatus.className = info.status.toLowerCase() === "active" ? "status-active" : "status-inactive";
-    modalLink.href = info.link;
-    modalImage.src = info.image;
-  });
-});
-
-document.querySelector(".modal .close").addEventListener("click", ()=>modal.style.display="none");
-window.addEventListener("click", e=>{if(e.target===modal) modal.style.display="none"});
-
-/* ---------------- Smooth scrolling ---------------- */
-document.querySelectorAll('a[href^="#"]').forEach(link=>{
-  link.addEventListener('click', e=>{
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute('href'));
-    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
-  });
-});
+// ---------------- PARTICLES ----------------
+const particles = document.getElementById('particles');
+for(let i=0;i<100;i++){
+  let span = document.createElement('span');
+  let size = Math.random()<0.5?'small':(Math.random()<0.7?'medium':'large');
+  span.className = size;
+  span.style.left = Math.random()*100+'%';
+  span.style.top = Math.random()*100+'%';
+  span.style.animationDuration = (5+Math.random()*15)+'s';
+  span.style.width = span.style.height = (size==='small'?1:size==='medium'?2:3)+'px';
+  particles.appendChild(span);
+}
 </script>
 
 </body>
