@@ -20,7 +20,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* ================= BACKGROUND CORE ================= */
 .bg{
   position:fixed;
   inset:0;
@@ -30,7 +29,6 @@ html {
   isolation:isolate;
 }
 
-/* ===== ENHANCED AURORA ===== */
 .aurora{
   position:absolute;
   width:220%;
@@ -74,7 +72,6 @@ html {
   100%{filter:blur(130px) brightness(1) saturate(1)}
 }
 
-/* ===== SLOW PARALLAX GLOW ===== */
 .glow{
   position:absolute;
   width:500px;
@@ -95,7 +92,6 @@ html {
   100%{transform:translate(-40px,60px)}
 }
 
-/* ===== GRAIN (FREE INLINE SVG) ===== */
 body::after{
   content:"";
   position:fixed;
@@ -105,7 +101,6 @@ body::after{
   z-index:-1;
 }
 
-/* ===== ENHANCED PARTICLES ===== */
 .particles span{
   position:absolute;
   border-radius:50%;
@@ -140,7 +135,6 @@ body::after{
   }
 }
 
-/* ================= UI ================= */
 .lang-toggle{
   position:fixed;
   bottom:20px;
@@ -155,7 +149,6 @@ body::after{
   backdrop-filter:blur(6px);
 }
 
-/* ===== NAV ===== */
 nav{
   position:fixed;
   top:0;width:100%;
@@ -194,7 +187,6 @@ nav .container{
 }
 .nav-links a:hover::after{width:100%}
 
-/* ================= HERO ================= */
 .hero{
   min-height:100vh;
   display:flex;
@@ -241,7 +233,6 @@ h2{
   -webkit-text-fill-color:transparent;
 }
 
-/* ===== SKILLS ===== */
 .skills-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -261,7 +252,6 @@ h2{
   box-shadow:0 20px 40px rgba(90,160,255,.25);
 }
 
-/* ===== PROJECTS ===== */
 .project-tabs{
   display:flex;
   justify-content:center;
@@ -316,7 +306,6 @@ h2{
   font-weight:600;
 }
 
-/* ===== OTHER ===== */
 .other-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -326,7 +315,6 @@ h2{
 
 .other-grid p{color:#aaa}
 
-/* ===== CONTACT ===== */
 .contact{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -337,7 +325,6 @@ h2{
 .contact p{color:#aaa}
 .contact a{color:#5ddcff;text-decoration:none}
 
-/* ===== RESPONSIVE ===== */
 @media(max-width:768px){
   .hero h1{font-size:3em}
   .nav-links{display:none}
@@ -481,7 +468,7 @@ Add on Discord
 </section>
 
 <script>
-/* ===== PARTICLES JS ===== */
+/* Javascript particles */
 const p=document.getElementById("particles");
 const sizes=["small","medium","large"];
 for(let i=0;i<70;i++){
@@ -494,7 +481,6 @@ for(let i=0;i<70;i++){
   p.appendChild(s);
 }
 
-/* ===== PROJECT SWITCH ===== */
 function showProjects(type,btn){
   document.getElementById("testing").style.display=type==="testing"?"grid":"none";
   document.getElementById("mods").style.display=type==="mods"?"grid":"none";
@@ -502,7 +488,6 @@ function showProjects(type,btn){
   btn.classList.add("active");
 }
 
-/* ===== LANGUAGE TOGGLE WITH HASH ===== */
 let fr = false; // default English
 
 const dict = {
@@ -534,7 +519,6 @@ const dict = {
   discord:["Add on Discord","M'ajouter sur Discord"]
 };
 
-// Function to apply language
 function applyLang(){
   document.querySelector(".lang-toggle").textContent = fr ? "EN" : "FR";
   document.querySelectorAll("[data-i18n]").forEach(e => {
@@ -559,6 +543,20 @@ window.addEventListener('load', () => {
   }
   applyLang();
 });
+  
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+    if(target){
+      target.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+  
 </script>
 
 </body>
