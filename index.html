@@ -33,12 +33,12 @@ section{padding:100px 20px;max-width:1400px;margin:auto}
 h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradient(135deg,#5ddcff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
 /* ---------------- SKILLS ---------------- */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;justify-content:center;text-align:center}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;justify-content:center;text-align:center;place-items:center}
 .skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s}
 .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(90,160,255,.25)}
 
 /* ---------------- OTHER ---------------- */
-.other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center;justify-content:center}
+.other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center;justify-content:center;place-items:center}
 .other-grid p{color:#aaa;transition:.4s}
 
 /* ---------------- PROJECTS ---------------- */
@@ -47,10 +47,11 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .project-tabs button.active{background:linear-gradient(135deg,#5ddcff,#9a5cff);color:#000}
 
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
-.project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative}
+.project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative;text-align:center}
 .project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3)}
 .project-card p{color:#aaa;margin-top:10px}
-.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600}
+.project-card a.view-btn, .project-card button.view-btn{display:inline-block;margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;font-weight:600;text-decoration:none;cursor:pointer;transition:.3s}
+.project-card a.view-btn:hover, .project-card button.view-btn:hover{transform:translateY(-3px)}
 
 /* ---------------- CONTACT ---------------- */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
@@ -58,14 +59,16 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .contact a{color:#5ddcff;text-decoration:none}
 
 /* ---------------- BUTTONS ---------------- */
-.lang-toggle, .toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
-.toggle-effects{right:150px}
+.lang-toggle{position:fixed;bottom:20px;right:150px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
 
 /* ---------------- MODAL ---------------- */
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:300;padding:20px}
 .modal-content{background:#111;border-radius:20px;padding:30px;max-width:500px;width:100%;position:relative;text-align:center}
 .modal-content img{max-width:150px;margin-bottom:20px;border-radius:12px}
 .modal-content .close{position:absolute;top:15px;right:15px;cursor:pointer;font-size:20px;color:#fff}
+
+/* Status text colors */
 .status-active { color: #0f0; font-weight:600; }
 .status-inactive { color: #f33; font-weight:600; }
 
@@ -108,11 +111,11 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
   <div class="container">
     <div class="logo">MYSTIC</div>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#other">Other</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" data-key="about">About</a>
+      <a href="#skills" data-key="skills">Skills</a>
+      <a href="#projects" data-key="projects">Projects</a>
+      <a href="#other" data-key="other">Other</a>
+      <a href="#contact" data-key="contact">Contact</a>
     </div>
   </div>
 </nav>
@@ -150,22 +153,25 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 <section id="projects">
   <h2 data-key="projects"></h2>
   <div class="project-tabs">
-    <button class="active" onclick="showProjects('testing', this)" data-key="gt"></button>
-    <button onclick="showProjects('mods', this)" data-key="md"></button>
+    <button class="active" onclick="showProjects('testing', this)" data-key="testing"></button>
+    <button onclick="showProjects('mods', this)" data-key="mods"></button>
   </div>
 
   <div class="projects-grid" id="testing">
-    <div class="project-card" data-info='{"title":"Abyss","position":"Veteran QA","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
+    <div class="project-card" 
+         data-info='{"position":"Veteran QA for Abyss","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
       <h3>Abyss</h3>
       <p data-key="abyss"></p>
       <button class="view-btn">View</button>
     </div>
-    <div class="project-card" data-info='{"title":"Solvo","position":"QA","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
+    <div class="project-card" 
+         data-info='{"position":"QA for Solvo","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
       <h3>Solvo</h3>
       <p data-key="solvo"></p>
       <button class="view-btn">View</button>
     </div>
-    <div class="project-card" data-info='{"title":"QA Central","position":"QA","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
+    <div class="project-card" 
+         data-info='{"position":"QA for Multiple Games via QA Central","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
       <h3>QA Central</h3>
       <p data-key="qac"></p>
       <button class="view-btn">View</button>
@@ -193,6 +199,7 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
     <p data-key="algorea"></p>
     <p data-key="ai"></p>
     <p data-key="german"></p>
+    <p>Worked on the wiki for the game Abyss on Roblox</p>
     <p data-key="discord"></p>
   </div>
 </section>
@@ -207,6 +214,7 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
     <div>
       <p>Discord</p>
       <a href="https://discord.com/users/858353168701718538">@_mystik</a>
+      <p>858353168701718538</p>
     </div>
   </div>
 </section>
@@ -229,7 +237,7 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 </div>
 
 <script>
-/* ---------------- DICTIONARY ---------------- */
+/* ===== LANGUAGE DICTIONARY ===== */
 let fr = false;
 const dict = {
   about:["About","À propos"],
@@ -260,72 +268,49 @@ const dict = {
   discord:["Add on Discord","M'ajouter sur Discord"]
 };
 
-/* ---------------- LANGUAGE TOGGLE ---------------- */
-function updateLanguage(){
-  document.querySelectorAll('[data-key]').forEach(el=>{
-    const key = el.getAttribute('data-key');
-    if(dict[key]) el.textContent = dict[key][fr?1:0];
-  });
-  document.getElementById('langToggle').textContent = fr ? 'EN':'FR';
-}
 document.getElementById('langToggle').addEventListener('click',()=>{
-  fr = !fr;
-  updateLanguage();
+  fr=!fr;
+  document.getElementById('langToggle').textContent=fr?'EN':'FR';
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const key=el.getAttribute('data-key');
+    if(dict[key]) el.textContent=dict[key][fr?1:0];
+  });
 });
-updateLanguage();
 
-/* ---------------- PROJECT TABS ---------------- */
+/* ===== PROJECT TABS ===== */
 function showProjects(id, btn){
-  document.querySelectorAll('.projects-grid').forEach(grid=>grid.style.display='none');
+  document.querySelectorAll('.projects-grid').forEach(p=>p.style.display='none');
   document.getElementById(id).style.display='grid';
   document.querySelectorAll('.project-tabs button').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 }
 
-/* ---------------- EFFECTS TOGGLE ---------------- */
-let effectsOn = true;
-document.querySelector('.toggle-effects').addEventListener('click',()=>{
-  effectsOn = !effectsOn;
-  document.querySelector('.bg').style.display = effectsOn?'block':'none';
-  document.querySelector('.toggle-effects').textContent = effectsOn?'Disable Effects':'Enable Effects';
-});
-
-/* ---------------- PARTICLES ---------------- */
-const particles = document.getElementById('particles');
-for(let i=0;i<150;i++){
-  const span = document.createElement('span');
-  const size = Math.random()*3+1;
-  span.className = size<1.5?'small':size<2.5?'medium':'large';
-  span.style.left=Math.random()*100+'vw';
-  span.style.animationDuration=10+Math.random()*20+'s';
-  span.style.width=size+'px';
-  span.style.height=size+'px';
-  particles.appendChild(span);
+/* ===== PARTICLES ===== */
+const particlesContainer=document.getElementById('particles');
+for(let i=0;i<50;i++){
+  let span=document.createElement('span');
+  span.className='small';
+  span.style.left=Math.random()*100+'%';
+  span.style.top=Math.random()*100+'%';
+  span.style.animationDuration=(10+Math.random()*20)+'s';
+  particlesContainer.appendChild(span);
 }
-
-/* ---------------- PROJECT MODAL ---------------- */
-const modal = document.getElementById('projectModal');
-const modalImage = document.getElementById('modalImage');
-const modalTitle = document.getElementById('modalTitle');
-const modalPosition = document.getElementById('modalPosition');
-const modalStatus = document.getElementById('modalStatus');
-const modalLink = document.getElementById('modalLink');
-document.querySelectorAll('.project-card .view-btn').forEach(btn=>{
-  btn.addEventListener('click',e=>{
-    const info = JSON.parse(btn.parentElement.dataset.info||'{}');
-    if(Object.keys(info).length){
-      modal.style.display='flex';
-      modalImage.src = info.image||'';
-      modalTitle.textContent = info.title||'';
-      modalPosition.textContent = info.position||'';
-      modalStatus.textContent = info.status||'';
-      modalStatus.className = info.status==='Active'?'status-active':'status-inactive';
-      modalLink.href = info.link||'#';
-    }
-  });
-});
-document.querySelector('.modal .close').addEventListener('click',()=>modal.style.display='none');
-window.addEventListener('click',e=>{if(e.target==modal) modal.style.display='none'});
+for(let i=0;i<30;i++){
+  let span=document.createElement('span');
+  span.className='medium';
+  span.style.left=Math.random()*100+'%';
+  span.style.top=Math.random()*100+'%';
+  span.style.animationDuration=(15+Math.random()*20)+'s';
+  particlesContainer.appendChild(span);
+}
+for(let i=0;i<20;i++){
+  let span=document.createElement('span');
+  span.className='large';
+  span.style.left=Math.random()*100+'%';
+  span.style.top=Math.random()*100+'%';
+  span.style.animationDuration=(20+Math.random()*25)+'s';
+  particlesContainer.appendChild(span);
+}
 </script>
 
 </body>
