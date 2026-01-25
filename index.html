@@ -5,26 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mystic's Portfolio</title>
 <meta name="description" content="Mystic - French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.">
-<meta name="keywords" content="game tester, QA, developer, playtesting, mods, Roblox">
+<meta name="keywords" content="game tester, QA, developer, playtesting, Roblox">
 <meta name="author" content="Mystic">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overflow-x:hidden}
+body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overflow-x:hidden;transition:all .3s}
 html{scroll-behavior:smooth}
-nav{position:fixed;top:0;width:100%;background:rgba(5,6,10,.65);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,.08)}
+nav{position:fixed;top:0;width:100%;background:rgba(5,6,10,.65);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,.08);transition:all .3s}
 nav .container{max-width:1400px;margin:auto;padding:20px 40px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-weight:900;font-size:1.4em;background:linear-gradient(135deg,#00ffff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.logo{font-weight:900;font-size:1.4em;background:linear-gradient(135deg,#00ffff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .3s}
 .nav-links{display:flex;gap:30px}
 .nav-links a{color:#fff;text-decoration:none;position:relative}
 .nav-links a::after{content:"";position:absolute;bottom:-5px;left:0;width:0;height:2px;background:linear-gradient(90deg,#00ffff,#9a5cff);transition:.3s}
 .nav-links a:hover::after{width:100%}
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px}
-.hero h1{font-size:4.5em;font-weight:900;background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff,#9a5cff);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:textFlow 12s ease infinite}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 20px;transition:all .3s}
+.hero h1{font-size:4.5em;font-weight:900;background:linear-gradient(135deg,#00ffff,#9a5cff,#3a7bff,#00ffff,#9a5cff);background-size:400% 400%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:textFlow 12s ease infinite;transition:all .3s}
 @keyframes textFlow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-.subtitle{font-size:1.6em;color:#ccc;margin:20px 0}
-.description{max-width:720px;margin:auto;color:#aaa;line-height:1.7}
-section{padding:100px 20px;max-width:1400px;margin:auto}
-h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradient(135deg,#5ddcff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{font-size:1.6em;color:#ccc;margin:20px 0;transition:all .3s}
+.description{max-width:720px;margin:auto;color:#aaa;line-height:1.7;transition:all .3s}
+section{padding:100px 20px;max-width:1400px;margin:auto;transition:all .3s}
+h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradient(135deg,#5ddcff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;transition:all .3s}
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
 .skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s}
 .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(90,160,255,.25)}
@@ -32,18 +32,21 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .project-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.15);transition:.4s;position:relative}
 .project-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(150,100,255,.3)}
 .project-card p{color:#aaa;margin-top:10px}
-.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600}
+.view-btn{margin-top:15px;padding:8px 22px;border-radius:20px;background:linear-gradient(135deg,#9a5cff,#5ddcff);color:#000;border:none;cursor:pointer;font-weight:600;transition:all .3s}
 .other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
 .other-grid p{color:#aaa}
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
 .contact p{color:#aaa}
 .contact a{color:#5ddcff;text-decoration:none}
-.lang-toggle, .toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
-.toggle-effects{right:150px}
+.toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);justify-content:center;align-items:center;z-index:300;padding:20px}
 .modal-content{background:#111;border-radius:20px;padding:30px;max-width:500px;width:100%;position:relative;text-align:center}
 .modal-content img{max-width:150px;margin-bottom:20px;border-radius:12px}
 .modal-content .close{position:absolute;top:15px;right:15px;cursor:pointer;font-size:20px;color:#fff}
+body.no-effects *{animation:none !important;transform:none !important;box-shadow:none !important;background:none !important;border:none !important;background-color:#111 !important;color:#fff !important}
+body.no-effects .logo{-webkit-background-clip:text;-webkit-text-fill-color:#fff;background:none;color:#fff}
+body.no-effects h2{-webkit-background-clip:text;-webkit-text-fill-color:#fff;background:none;color:#fff}
+body.no-effects .view-btn{background:#5ddcff;color:#000}
 @media(max-width:768px){.hero h1{font-size:3em}.nav-links{display:none}}
 </style>
 </head>
@@ -83,14 +86,8 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 <section id="skills">
   <h2>Skills</h2>
   <div class="skills-grid">
-    <div class="skill-card">
-      <h3>Game Testing</h3>
-      <p>Playtesting, QA reports, balance feedback</p>
-    </div>
-    <div class="skill-card">
-      <h3>Mod Development</h3>
-      <p>Gameplay mods, scripting improvements</p>
-    </div>
+    <div class="skill-card"><h3>Game Testing</h3><p>Playtesting, QA reports, balance feedback</p></div>
+    <div class="skill-card"><h3>Mod Development</h3><p>Gameplay mods, scripting improvements</p></div>
     <div class="skill-card"><h3>Python</h3><p>Basics</p></div>
     <div class="skill-card"><h3>AutoHotkey</h3><p>Basics</p></div>
     <div class="skill-card"><h3>3D Modelling</h3><p>Basics</p></div>
@@ -166,10 +163,9 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 <script>
 /* Disable/Enable Effects */
 const toggleEffectsBtn = document.querySelector(".toggle-effects");
-let effectsEnabled = true;
 toggleEffectsBtn.addEventListener("click", ()=>{
-  effectsEnabled = !effectsEnabled;
-  toggleEffectsBtn.textContent = effectsEnabled ? "Disable Effects" : "Enable Effects";
+  document.body.classList.toggle("no-effects");
+  toggleEffectsBtn.textContent = document.body.classList.contains("no-effects") ? "Enable Effects" : "Disable Effects";
 });
 
 /* Modal functionality */
