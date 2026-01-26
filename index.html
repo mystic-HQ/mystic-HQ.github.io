@@ -8,6 +8,7 @@
 <meta name="keywords" content="game tester, QA, developer, playtesting, mods, Roblox">
 <meta name="author" content="Mystic">
 <style>
+/* ---------------- RESET ---------------- */
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overflow-x:hidden}
 html{scroll-behavior:smooth}
@@ -58,7 +59,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:left;align-items:center}
 .contact div{display:flex;flex-direction:column}
 .contact label{color:#aaa;font-weight:600;margin-bottom:5px}
-.contact a{color:#5ddcff;text-decoration:none}
+.contact a{color:#5ddcff;text-decoration:none;}
 
 /* ---------------- BUTTONS ---------------- */
 .lang-toggle, .toggle-effects{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
@@ -84,11 +85,6 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .glow.purple{background:#9a5cff;bottom:10%;right:15%}
 .glow.blue{background:#3a7bff;top:55%;left:55%}
 @keyframes glowDrift{0%{transform:translate(0,0)}50%{transform:translate(80px,-120px)}100%{transform:translate(-40px,60px)}}
-.particles span{position:absolute;border-radius:50%;background:rgba(255,255,255,.85);opacity:.4;animation:particleDrift linear infinite;will-change:transform}
-.particles span.small{width:1px;height:1px;opacity:.25}
-.particles span.medium{width:2px;height:2px;opacity:.45}
-.particles span.large{width:3px;height:3px;opacity:.6;filter:blur(.3px)}
-@keyframes particleDrift{from{transform:translateY(120vh) translateX(0)}to{transform:translateY(-20vh) translateX(140px)}}
 
 /* ---------------- FOOTER ---------------- */
 footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
@@ -104,7 +100,6 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
   <div class="glow cyan"></div>
   <div class="glow purple"></div>
   <div class="glow blue"></div>
-  <div class="particles" id="particles"></div>
 </div>
 
 <nav>
@@ -158,17 +153,17 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
   </div>
 
   <div class="projects-grid" id="testing">
-    <div class="project-card" data-info='{"title":"Abyss","position":"Veteran QA","status":"Active","link":"https://discord.gg/deepspirit","image":"abyss.png"}'>
+    <div class="project-card">
       <h3>Abyss</h3>
       <p data-key="abyss"></p>
       <button class="view-btn">View</button>
     </div>
-    <div class="project-card" data-info='{"title":"Solvo","position":"QA","status":"Active","link":"https://discord.gg/ryfqDSYGMX","image":"solvo.png"}'>
+    <div class="project-card">
       <h3>Solvo</h3>
       <p data-key="solvo"></p>
       <button class="view-btn">View</button>
     </div>
-    <div class="project-card" data-info='{"title":"QA Central","position":"QA","status":"Active","link":"https://discord.gg/qac","image":"qac.png"}'>
+    <div class="project-card">
       <h3>QA Central</h3>
       <p data-key="qac"></p>
       <button class="view-btn">View</button>
@@ -179,12 +174,12 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
     <div class="project-card">
       <h3>NoRainParticles</h3>
       <p data-key="nrp"></p>
-      <a class="view-btn" href="https://github.com/mystic-HQ/NoRainParticles" target="_blank">View</a>
+      <a class="view-btn" href="#" target="_blank">View</a>
     </div>
     <div class="project-card">
       <h3>BetterCruiserSync</h3>
       <p data-key="bcs"></p>
-      <a class="view-btn" href="https://github.com/mystic-HQ/BetterCruiserSync" target="_blank">View</a>
+      <a class="view-btn" href="#" target="_blank">View</a>
     </div>
   </div>
 </section>
@@ -196,7 +191,7 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
     <p data-key="algorea"></p>
     <p data-key="ai"></p>
     <p data-key="german"></p>
-    <p class="centered" data-key="wiki">Worked on the wiki for the game Abyss on Roblox.</p>
+    <p class="centered" data-key="wiki"></p>
   </div>
 </section>
 
@@ -219,47 +214,32 @@ footer{text-align:center;padding:20px;color:#777;font-size:0.9em}
 <button class="toggle-effects">Disable Effects</button>
 <button class="lang-toggle" id="langToggle">FR</button>
 
-<!-- Modal -->
-<div class="modal" id="projectModal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <img id="modalImage" src="" alt="Project Image">
-    <h3 id="modalTitle"></h3>
-    <p><strong>Position:</strong> <span id="modalPosition"></span></p>
-    <p><strong>Status:</strong> <span id="modalStatus" class="status-active"></span></p>
-    <a id="modalLink" href="#" target="_blank">Visit</a>
-  </div>
-</div>
-
 <script>
-let fr = false;
-const dict = {
-  about:["About","À propos"],
-  skills:["Skills","Compétences"],
-  projects:["Projects","Projets"],
-  other:["Other","Autres"],
-  contact:["Contact","Contact"],
+const translations = {
   subtitle:["Developer & Game Tester","Développeur & Testeur de jeux"],
   desc:["French developer and game tester providing structured playtesting, bug reports, and gameplay feedback.","Développeur français et testeur de jeux fournissant des playtests structurés, rapports de bugs et retours de gameplay."],
+  about:["About","À propos"],
   aboutText:["I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.","Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."],
-  testing:["Game Testing","Tests de jeux"],
-  mods:["Mods","Mods"],
+  skills:["Skills","Compétences"],
   gt:["Game Testing","Tests de jeux"],
   gtDesc:["Playtesting, QA reports, balance feedback","Playtesting, rapports QA, équilibrage"],
   md:["Mod Development","Développement de mods"],
   mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],
   basic:["Basics","Bases"],
+  projects:["Projects","Projets"],
   abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
   solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."],
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
   nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
   bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
-  email:["Email","Email"],
+  other:["Other","Autres"],
   b2:["Certified Cambridge B2 English level","Certification anglais B2"],
   algorea:["Reached Quarter-Finals of national contest Algoréa twice (Scratch)","Quart de finale du Concours Algoréa national deux fois (Scratch)"],
   ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"],
   german:["I speak a bit of German","Je parle un peu allemand"],
-  wiki:["Worked on the wiki for the game Abyss on Roblox","J'ai travaillé sur le wiki du jeu Abyss sur Roblox"]
+  wiki:["Worked on the wiki for the game Abyss on Roblox","J'ai travaillé sur le wiki du jeu Abyss sur Roblox"],
+  contact:["Contact","Contact"],
+  email:["Email","Email"]
 };
 </script>
 
