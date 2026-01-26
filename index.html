@@ -13,6 +13,9 @@ html{scroll-behavior:smooth}
 /* ================= BACKGROUND ================= */
 .bg{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at top,#0c1224,#05060a 60%);overflow:hidden;isolation:isolate;transition:opacity 0.3s}
 .bg.disabled{opacity:0.3}
+.bg.disabled .aurora,
+.bg.disabled .glow,
+.bg.disabled .particles span{animation-play-state:paused!important;opacity:0.1!important}
 .aurora{position:absolute;width:220%;height:220%;top:-60%;left:-60%;background:linear-gradient(120deg,rgba(0,255,255,.08),rgba(140,0,255,.08),rgba(0,150,255,.08),rgba(0,255,180,.05));filter:blur(140px);animation:auroraMove 32s linear infinite,auroraColor 15s ease-in-out infinite alternate;transform-origin:center;opacity:.85}
 .aurora.second{animation:auroraMoveReverse 46s linear infinite,auroraColor 18s ease-in-out infinite alternate;opacity:.55;transform:scale(1.15)}
 @keyframes auroraMove{0%{transform:rotate(0deg) translateY(0)}50%{transform:rotate(180deg) translateY(-6%)}100%{transform:rotate(360deg) translateY(0)}}
@@ -315,7 +318,7 @@ const dict = {
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
   nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
   bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
-  email:["Email","Email"],b2:["Certified Cambridge B2 English level","Certification anglais B2"],
+  email:["Email","Email"],b2:["Certified Cambridge B2 English level","Certification Cambridge Anglais B2"],
   algorea:["Reached Quarter-Finals of national contest Algoréa twice (Scratch)","Quart de finale du Concours Algoréa national deux fois (Scratch)"],
   ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"],german:["I speak a bit of German","Je parle un peu allemand"],
   discord:["Add on Discord","M'ajouter sur Discord"],wiki:["Worked on the wiki for the game Abyss on Roblox","Travaillé sur le wiki du jeu Abyss sur Roblox"],
