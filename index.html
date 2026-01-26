@@ -328,7 +328,7 @@ const dict = {
   perf:["Performance","Performance"],
   forHire:["<strong>Available for hire as a game tester.</strong> I am not currently offering development services, but I provide professional playtesting and QA for game projects.","<strong>Disponible en tant que testeur de jeux.</strong> Je n'offre pas de services de développement actuellement, mais je fournis du playtesting professionnel et de l'assurance qualité pour des projets de jeux."]
 };
-function applyLang(){document.querySelector(".lang-toggle").textContent = fr?"EN":"FR";document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(dict[k]) e.textContent=dict[k][fr?1:0]})}
+function applyLang(){document.querySelector(".lang-toggle").textContent = fr?"EN":"FR";document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(dict[k]) e.innerHTML=dict[k][fr?1:0]})}
 function toggleLang(){fr=!fr;applyLang();history.replaceState(null,'',fr?'#fr':'#en')}
 window.addEventListener('load',()=>{if(window.location.hash==='#fr'){fr=true}else if(window.location.hash==='#en'){fr=false}applyLang()})
 </script>
