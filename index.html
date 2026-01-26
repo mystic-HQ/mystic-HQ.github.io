@@ -11,7 +11,8 @@ body{font-family:Inter,system-ui,sans-serif;background:#05060a;color:#fff;overfl
 html{scroll-behavior:smooth}
 
 /* ================= BACKGROUND ================= */
-.bg{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at top,#0c1224,#05060a 60%);overflow:hidden;isolation:isolate}
+.bg{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at top,#0c1224,#05060a 60%);overflow:hidden;isolation:isolate;transition:opacity 0.3s}
+.bg.disabled{opacity:0.3}
 .aurora{position:absolute;width:220%;height:220%;top:-60%;left:-60%;background:linear-gradient(120deg,rgba(0,255,255,.08),rgba(140,0,255,.08),rgba(0,150,255,.08),rgba(0,255,180,.05));filter:blur(140px);animation:auroraMove 32s linear infinite,auroraColor 15s ease-in-out infinite alternate;transform-origin:center;opacity:.85}
 .aurora.second{animation:auroraMoveReverse 46s linear infinite,auroraColor 18s ease-in-out infinite alternate;opacity:.55;transform:scale(1.15)}
 @keyframes auroraMove{0%{transform:rotate(0deg) translateY(0)}50%{transform:rotate(180deg) translateY(-6%)}100%{transform:rotate(360deg) translateY(0)}}
@@ -23,8 +24,20 @@ html{scroll-behavior:smooth}
 .glow.blue{background:#3a7bff;top:55%;left:55%}
 @keyframes glowDrift{0%{transform:translate(0,0)}50%{transform:translate(80px,-120px)}100%{transform:translate(-40px,60px)}}
 
+/* ================= PARTICLES ================= */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particles span{position:absolute;width:2px;height:2px;background:#fff;border-radius:50%;animation:particleFloat linear infinite;opacity:0.6}
+.particles span.small{width:1px;height:1px;opacity:0.4}
+.particles span.medium{width:2px;height:2px;opacity:0.6}
+.particles span.large{width:3px;height:3px;opacity:0.8}
+@keyframes particleFloat{0%{transform:translateY(100vh) translateX(0);opacity:0}10%{opacity:0.6}90%{opacity:0.6}100%{transform:translateY(-100vh) translateX(50px);opacity:0}}
+
 /* ================= UI ================= */
-.lang-toggle{position:fixed;bottom:20px;right:20px;z-index:200;background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px)}
+.controls{position:fixed;bottom:20px;right:20px;z-index:200;display:flex;gap:10px}
+.lang-toggle,.perf-toggle{background:rgba(10,10,20,.7);border:1px solid #5ddcff;color:#fff;padding:8px 14px;border-radius:20px;cursor:pointer;backdrop-filter:blur(6px);transition:all 0.3s}
+.perf-toggle:hover,.lang-toggle:hover{background:rgba(20,20,40,.9);border-color:#9a5cff}
+.perf-toggle.active{background:linear-gradient(135deg,#5ddcff,#9a5cff);color:#000;border-color:transparent}
+
 nav{position:fixed;top:0;width:100%;background:rgba(5,6,10,.65);backdrop-filter:blur(12px);z-index:100;border-bottom:1px solid rgba(255,255,255,.08)}
 nav .container{max-width:1400px;margin:auto;padding:20px 40px;display:flex;justify-content:space-between;align-items:center}
 .logo{font-weight:900;font-size:1.4em;background:linear-gradient(135deg,#00ffff,#9a5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -46,6 +59,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 
 /* ===== SKILLS ===== */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px}
+.skills-grid .skill-card:nth-child(5){grid-column:1/-1;justify-self:center;max-width:260px}
 .skill-card{padding:30px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);transition:.4s}
 .skill-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(90,160,255,.25)}
 
@@ -62,7 +76,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 /* ===== OTHER ===== */
 .other-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
 .other-grid p{color:#aaa}
-.other-grid p.centered{justify-self:center}
+.other-grid p:nth-child(5){grid-column:1/-1;justify-self:center;max-width:260px}
 
 /* ===== CONTACT ===== */
 .contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;text-align:center}
@@ -74,16 +88,22 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .modal-content{background:#111;border-radius:20px;padding:30px;max-width:400px;width:100%;position:relative;text-align:center}
 .modal-content img{max-width:150px;margin-bottom:20px;border-radius:12px}
 .modal-content .close{position:absolute;top:15px;right:15px;cursor:pointer;font-size:20px;color:#fff}
+.modal-content a{display:inline-block;margin-top:15px;padding:10px 24px;border-radius:20px;background:linear-gradient(135deg,#5ddcff,#9a5cff);color:#000;text-decoration:none;font-weight:600;transition:0.3s}
+.modal-content a:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(93,220,255,.4)}
 .status-active{color:#0f0;font-weight:600}
 .status-inactive{color:#f33;font-weight:600}
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:768px){.hero h1{font-size:3em}.nav-links{display:none}}
+@media(max-width:768px){
+  .hero h1{font-size:3em}
+  .nav-links{display:none}
+  .controls{flex-direction:column;bottom:10px;right:10px}
+}
 </style>
 </head>
 <body>
 
-<div class="bg">
+<div class="bg" id="bg">
   <div class="aurora"></div>
   <div class="aurora second"></div>
   <div class="glow cyan"></div>
@@ -92,7 +112,10 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
   <div class="particles" id="particles"></div>
 </div>
 
-<button class="lang-toggle" onclick="toggleLang()">FR</button>
+<div class="controls">
+  <button class="perf-toggle active" onclick="togglePerformance()" data-i18n="perf">Performance</button>
+  <button class="lang-toggle" onclick="toggleLang()">FR</button>
+</div>
 
 <nav>
   <div class="container">
@@ -191,7 +214,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
     <p data-i18n="algorea">Reached Quarter-Finals of national contest Algoréa twice (Scratch)</p>
     <p data-i18n="ai">I use AI to assist with coding</p>
     <p data-i18n="german">I speak a bit of German</p>
-    <p class="centered" data-i18n="wiki">Worked on the wiki for the game Abyss on Roblox</p>
+    <p data-i18n="wiki">Worked on the wiki for the game Abyss on Roblox</p>
   </div>
 </section>
 
@@ -217,6 +240,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
     <img id="modal-img" src="" alt="Project Image">
     <p id="modal-status">Status: <span></span></p>
     <p id="modal-pos">Position: <span></span></p>
+    <a id="modal-link" href="#" target="_blank">View</a>
   </div>
 </div>
 
@@ -224,7 +248,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 /* ===== PARTICLES JS ===== */
 const p=document.getElementById("particles");
 const sizes=["small","medium","large"];
-for(let i=0;i<70;i++){
+for(let i=0;i<35;i++){
   const s=document.createElement("span");
   const size=sizes[Math.floor(Math.random()*sizes.length)];
   s.classList.add(size);
@@ -232,6 +256,22 @@ for(let i=0;i<70;i++){
   s.style.animationDuration=18+Math.random()*25+"s";
   s.style.animationDelay=Math.random()*-40+"s";
   p.appendChild(s);
+}
+
+/* ===== PERFORMANCE TOGGLE ===== */
+let perfMode = true;
+function togglePerformance(){
+  perfMode = !perfMode;
+  const bg = document.getElementById("bg");
+  const btn = document.querySelector(".perf-toggle");
+  
+  if(perfMode){
+    bg.classList.remove("disabled");
+    btn.classList.add("active");
+  } else {
+    bg.classList.add("disabled");
+    btn.classList.remove("active");
+  }
 }
 
 /* ===== PROJECT SWITCH ===== */
@@ -244,9 +284,9 @@ function showProjects(type,btn){
 
 /* ===== MODAL DATA ===== */
 const projectData = {
-  abyss:{img:"abyss.png",status:"active",pos:"Veteran QA Tester"},
-  solvo:{img:"solvo.png",status:"active",pos:"QA Tester"},
-  qac:{img:"qac.png",status:"active",pos:"QA Tester"}
+  abyss:{img:"abyss.png",status:"active",pos:"Veteran QA Tester",link:"https://discord.gg/deepspirit"},
+  solvo:{img:"solvo.png",status:"active",pos:"QA Tester",link:"https://discord.gg/ryfqDSYGMX"},
+  qac:{img:"qac.png",status:"active",pos:"QA Tester",link:"https://discord.gg/qac"}
 };
 
 function openModal(project){
@@ -256,6 +296,7 @@ function openModal(project){
   document.getElementById("modal-status").querySelector("span").textContent = data.status;
   document.getElementById("modal-status").className = data.status==="active"?"status-active":"status-inactive";
   document.getElementById("modal-pos").querySelector("span").textContent = data.pos;
+  document.getElementById("modal-link").href = data.link;
   document.getElementById("modal").style.display = "flex";
 }
 
@@ -270,14 +311,15 @@ const dict = {
   aboutText:["I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.","Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."],
   testing:["Game Testing","Tests de jeux"],mods:["Mods","Mods"],gt:["Game Testing","Tests de jeux"],gtDesc:["Playtesting, QA reports, balance feedback","Playtesting, rapports QA, équilibrage"],md:["Mod Development","Développement de mods"],mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],basic:["Basics","Bases"],
   abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
-  solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d’un tueur."],
+  solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d'un tueur."],
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
   nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
   bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
   email:["Email","Email"],b2:["Certified Cambridge B2 English level","Certification anglais B2"],
   algorea:["Reached Quarter-Finals of national contest Algoréa twice (Scratch)","Quart de finale du Concours Algoréa national deux fois (Scratch)"],
   ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"],german:["I speak a bit of German","Je parle un peu allemand"],
-  discord:["Add on Discord","M'ajouter sur Discord"],wiki:["Worked on the wiki for the game Abyss on Roblox","Travaillé sur le wiki du jeu Abyss sur Roblox"]
+  discord:["Add on Discord","M'ajouter sur Discord"],wiki:["Worked on the wiki for the game Abyss on Roblox","Travaillé sur le wiki du jeu Abyss sur Roblox"],
+  perf:["Performance","Performance"]
 };
 function applyLang(){document.querySelector(".lang-toggle").textContent = fr?"EN":"FR";document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(dict[k]) e.textContent=dict[k][fr?1:0]})}
 function toggleLang(){fr=!fr;applyLang();history.replaceState(null,'',fr?'#fr':'#en')}
