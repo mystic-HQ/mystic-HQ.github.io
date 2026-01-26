@@ -149,6 +149,9 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
     I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback.
     My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.
   </p>
+  <p class="description" style="margin-top:30px;padding:20px;background:rgba(93,220,255,.1);border-left:4px solid #5ddcff;border-radius:8px" data-i18n="forHire">
+    <strong>Available for hire as a game tester.</strong> I am not currently offering development services, but I provide professional playtesting and QA for game projects.
+  </p>
 </section>
 
 <section id="skills">
@@ -322,7 +325,8 @@ const dict = {
   algorea:["Reached Quarter-Finals of national contest Algoréa twice (Scratch)","Quart de finale du Concours Algoréa national deux fois (Scratch)"],
   ai:["I use AI to assist with coding","J'utilise l'IA pour m'aider à coder"],german:["I speak a bit of German","Je parle un peu allemand"],
   discord:["Add on Discord","M'ajouter sur Discord"],wiki:["Worked on the wiki for the game Abyss on Roblox","Travaillé sur le wiki du jeu Abyss sur Roblox"],
-  perf:["Performance","Performance"]
+  perf:["Performance","Performance"],
+  forHire:["<strong>Available for hire as a game tester.</strong> I am not currently offering development services, but I provide professional playtesting and QA for game projects.","<strong>Disponible en tant que testeur de jeux.</strong> Je n'offre pas de services de développement actuellement, mais je fournis du playtesting professionnel et de l'assurance qualité pour des projets de jeux."]
 };
 function applyLang(){document.querySelector(".lang-toggle").textContent = fr?"EN":"FR";document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(dict[k]) e.textContent=dict[k][fr?1:0]})}
 function toggleLang(){fr=!fr;applyLang();history.replaceState(null,'',fr?'#fr':'#en')}
