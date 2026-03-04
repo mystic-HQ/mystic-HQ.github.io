@@ -321,8 +321,10 @@ function openModal(project){
   document.getElementById("modal-status").querySelector("span").textContent = data.status;
   document.getElementById("modal-status").className = data.status==="active"?"status-active":"status-inactive";
   document.getElementById("modal-pos").querySelector("span").textContent = data.pos;
+  document.getElementById("modal-time").querySelector("span").textContent = data.time;
   document.getElementById("modal-link").href = data.link;
   document.getElementById("modal").style.display = "flex";
+
 }
 
 function closeModal(){document.getElementById("modal").style.display="none"}
