@@ -318,16 +318,24 @@ const projectData = {
 function openModal(project){
   const data = projectData[project];
   if(!data) return;
+
   document.getElementById("modal-img").src = data.img;
-  document.getElementById("modal-status").querySelector("span").textContent = data.status;
-  document.getElementById("modal-status").className = data.status==="active"?"status-active":"status-inactive";
-  document.getElementById("modal-pos").querySelector("span").textContent = data.pos;
-  document.getElementById("modal-time").querySelector("span").textContent = data.time;
+
+  const statusEl = document.getElementById("modal-status");
+  statusEl.querySelector("span:last-child").textContent = data.status;
+  statusEl.className = data.status==="active"?"status-active":"status-inactive";
+
+  document.getElementById("modal-pos")
+    .querySelector("span:last-child").textContent = data.pos;
+
+  document.getElementById("modal-time")
+    .querySelector("span:last-child").textContent = data.time;
+
   document.getElementById("modal-link").href = data.link;
+
   document.getElementById("modal").style.display = "flex";
-
 }
-
+  
 function closeModal(){document.getElementById("modal").style.display="none"}
 
 /* ===== LANGUAGE TOGGLE ===== */
