@@ -317,8 +317,8 @@ function togglePerformance(){
 
 /* ===== PROJECT SWITCH ===== */
 function showProjects(type,btn){
-  document.getElementById("testing").style.display=type==="testing"?"grid":"none";
-  document.getElementById("mods").style.display=type==="mods"?"grid":"none";
+  document.getElementById("testing").style.display=type==="testing"?"flex":"none";
+  document.getElementById("mods").style.display=type==="mods"?"flex":"none";
   document.querySelectorAll(".project-tabs button").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
 }
