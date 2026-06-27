@@ -119,6 +119,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
 .modal-content a:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(93,220,255,.4)}
 .status-active{color:#0f0;font-weight:600}
 .status-inactive{color:#f33;font-weight:600}
+.status-indev{color:#ffb347;font-weight:600}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
@@ -220,6 +221,14 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
         Multiple playtested games through QA Central, a hub for developers seeking testers.
       </p>
       <a class="project-link" href="javascript:void(0)" onclick="openModal('qac')" data-i18n="LearnMoreBtn">>Learn More</a>
+    </div>
+
+    <div class="project-card">
+      <h3>The Sail</h3>
+      <p data-i18n="sail">
+        Open-world sea game centered around expeditions.
+      </p>
+      <a class="project-link" href="javascript:void(0)" onclick="openModal('sail')" data-i18n="LearnMoreBtn">>Learn More</a>
     </div>
   </div>
 
@@ -336,6 +345,13 @@ const projectData = {
     pos:"QA Tester",
     time:"September 2025 - Now",
     link:"https://discord.gg/qac"
+  },
+  sail:{
+    img:"the_sail.png",
+    status:"indev",
+    pos:"QA Tester",
+    time:"Since 22/06/2026",
+    link:"https://discord.gg/cEw2fW9wdY"
   }
 };
 
@@ -347,14 +363,25 @@ function openModal(project){
   document.getElementById("modal-img").src = data.img;
 
   const statusEl = document.getElementById("modal-status");
-  statusEl.querySelector("span:last-child").textContent = data.status;
-  statusEl.className = data.status==="active"?"status-active":"status-inactive";
+  const statusText = data.status === "indev" ? "IN-DEV" : data.status;
+  statusEl.querySelector("span:last-child").textContent = statusText;
+  statusEl.className = data.status==="active" ? "status-active" : data.status==="indev" ? "status-indev" : "status-inactive";
 
-  document.getElementById("modal-pos")
-    .querySelector("span:last-child").textContent = data.pos;
+  const posEl = document.getElementById("modal-pos");
+  if(data.pos){
+    posEl.style.display = "";
+    posEl.querySelector("span:last-child").textContent = data.pos;
+  } else {
+    posEl.style.display = "none";
+  }
 
-  document.getElementById("modal-time")
-    .querySelector("span:last-child").textContent = data.time;
+  const timeEl = document.getElementById("modal-time");
+  if(data.time){
+    timeEl.style.display = "";
+    timeEl.querySelector("span:last-child").textContent = data.time;
+  } else {
+    timeEl.style.display = "none";
+  }
 
   document.getElementById("modal-link").href = data.link;
 
@@ -374,6 +401,7 @@ const dict = {
   abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
   solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d'un tueur."],
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
+  sail:["Open-world sea game centered around expeditions.","Jeu de mer en monde ouvert centré sur les expéditions."],
   nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
   bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
   email:["Email","Email"],b2:["Certified Cambridge B2 English level","Certification anglais B2"],
