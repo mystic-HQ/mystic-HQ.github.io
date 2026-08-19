@@ -226,9 +226,25 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
     <div class="project-card">
       <h3>The Sail</h3>
       <p data-i18n="sail">
-        Open-world sea game centered around expeditions.
+        Open-world sea game by Yak Studios centered around expeditions.
       </p>
       <a class="project-link" href="javascript:void(0)" onclick="openModal('sail')" data-i18n="LearnMoreBtn">>Learn More</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Battle Wave</h3>
+      <p data-i18n="battlewave">
+        Idle Tower Defense game by Starlume.
+      </p>
+      <a class="project-link" href="javascript:void(0)" onclick="openModal('battlewave')" data-i18n="LearnMoreBtn">>Learn More</a>
+    </div>
+
+    <div class="project-card">
+      <h3>UNFOUND</h3>
+      <p data-i18n="unfound">
+        Backrooms survival game by Yak Studios.
+      </p>
+      <a class="project-link" href="javascript:void(0)" onclick="openModal('unfound')" data-i18n="LearnMoreBtn">>Learn More</a>
     </div>
   </div>
 
@@ -326,14 +342,14 @@ function showProjects(type,btn){
 const projectData = {
   abyss:{
     img:"abyss.png",
-    status:"active",
+    status:"discontinued",
     pos:"Veteran QA Tester & Moderator",
     time:"August 2025 - Now",
     link:"https://discord.gg/deepspirit"
   },
   solvo:{
     img:"solvo.png",
-    status:"active",
+    status:"indev",
     pos:"QA Tester",
     time:"November 2025 - Now",
     link:"https://discord.gg/ryfqDSYGMX"
@@ -351,6 +367,20 @@ const projectData = {
     pos:"QA Tester",
     time:"Since 22/06/2026",
     link:"https://discord.gg/cEw2fW9wdY"
+  },
+  battlewave:{
+    img:"starlume.png",
+    status:"active",
+    pos:"QA Tester",
+    time:"Since 15/08/2026",
+    link:"https://discord.gg/battlewave"
+  },
+  unfound:{
+    img:"unfound.png",
+    status:"active",
+    pos:"QA Tester",
+    time:"Since 09/08/2026",
+    link:"https://discord.gg/unfoundrbx"
   }
 };
 
@@ -362,7 +392,8 @@ function openModal(project){
   document.getElementById("modal-img").src = data.img;
 
   const statusEl = document.getElementById("modal-status");
-  const statusText = data.status === "indev" ? "IN-DEV" : data.status;
+  const statusLabels = { indev:"IN-DEV", discontinued:"DISCONTINUED", active:"active", inactive:"inactive" };
+  const statusText = statusLabels[data.status] || data.status;
   statusEl.querySelector("span:last-child").textContent = statusText;
   statusEl.className = data.status==="active" ? "status-active" : data.status==="indev" ? "status-indev" : "status-inactive";
 
@@ -400,7 +431,9 @@ const dict = {
   abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
   solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d'un tueur."],
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
-  sail:["Open-world sea game centered around expeditions.","Jeu de mer en monde ouvert centré sur les expéditions."],
+  sail:["Open-world sea game by Yak Studios centered around expeditions.","Jeu de mer en monde ouvert par Yak Studios centré sur les expéditions."],
+  battlewave:["Idle Tower Defense game by Starlume.","Jeu Idle Tower Defense par Starlume."],
+  unfound:["Backrooms survival game by Yak Studios.","Jeu de survie Backrooms par Yak Studios."],
   nrp:["Lethal Company performance mod removing rain particle effects.","Mod de performance pour Lethal Company supprimant les particules de pluie."],
   bcs:["Lethal Company mod that syncs the cruiser between players.","Mod de synchronisation du camion entre les joueurs sur Lethal Company."],
   email:["Email","Email"],b2:["Certified Cambridge B2 English level","Certification anglais B2"],
