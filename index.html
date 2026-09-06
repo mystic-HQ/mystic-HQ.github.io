@@ -210,7 +210,7 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
     <div class="project-card">
       <h3>Solvo</h3>
       <p data-i18n="solvo">
-        Roblox multiplayer survival game centered around evading a killer.
+        Roblox multiplayer survival game by Solvo Games centered around evading a killer.
       </p>
       <a class="project-link" href="javascript:void(0)" onclick="openModal('solvo')" data-i18n="LearnMoreBtn">>Learn More</a>
     </div>
@@ -245,6 +245,14 @@ h2{text-align:center;font-size:2.8em;margin-bottom:60px;background:linear-gradie
         Backrooms survival game by Yak Studios.
       </p>
       <a class="project-link" href="javascript:void(0)" onclick="openModal('unfound')" data-i18n="LearnMoreBtn">>Learn More</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Last Stop</h3>
+      <p data-i18n="laststop">
+        Driving survival game by The Hidden Route, building defenses on your bus while exploring the open road and encountering zombies and bandits.
+      </p>
+      <a class="project-link" href="javascript:void(0)" onclick="openModal('laststop')" data-i18n="LearnMoreBtn">>Learn More</a>
     </div>
   </div>
 
@@ -349,9 +357,9 @@ const projectData = {
   },
   solvo:{
     img:"solvo.png",
-    status:"indev",
-    pos:"QA Tester",
-    time:"November 2025 - Now",
+    status:"released",
+    pos:"Former Tester",
+    time:"November 2025 - 05/09/2026",
     link:"https://discord.gg/ryfqDSYGMX"
   },
   qac:{
@@ -365,22 +373,29 @@ const projectData = {
     img:"the_sail.png",
     status:"indev",
     pos:"QA Tester",
-    time:"Since 22/06/2026",
+    time:"22/06/2026 - Now",
     link:"https://discord.gg/cEw2fW9wdY"
   },
   battlewave:{
     img:"starlume.png",
     status:"indev",
     pos:"QA Tester",
-    time:"Since 15/08/2026",
+    time:"15/08/2026 - Now",
     link:"https://discord.gg/battlewave"
   },
   unfound:{
     img:"unfound.png",
     status:"indev",
     pos:"QA Tester",
-    time:"Since 09/08/2026",
+    time:"09/08/2026 - Now",
     link:"https://discord.gg/unfoundrbx"
+  },
+  laststop:{
+    img:"laststop.png",
+    status:"indev",
+    pos:"QA Tester",
+    time:"28/08/2026 - Now",
+    link:"https://discord.gg/laststop"
   }
 };
 
@@ -392,10 +407,10 @@ function openModal(project){
   document.getElementById("modal-img").src = data.img;
 
   const statusEl = document.getElementById("modal-status");
-  const statusLabels = { indev:"IN-DEV", discontinued:"DISCONTINUED", active:"active", inactive:"inactive" };
+  const statusLabels = { indev:"IN-DEV", discontinued:"DISCONTINUED", active:"active", inactive:"inactive", released:"RELEASED" };
   const statusText = statusLabels[data.status] || data.status;
   statusEl.querySelector("span:last-child").textContent = statusText;
-  statusEl.className = data.status==="active" ? "status-active" : data.status==="indev" ? "status-indev" : "status-inactive";
+  statusEl.className = (data.status==="active" || data.status==="released") ? "status-active" : data.status==="indev" ? "status-indev" : "status-inactive";
 
   const posEl = document.getElementById("modal-pos");
   if(data.pos){
@@ -429,7 +444,8 @@ const dict = {
   aboutText:["I am a developer and game tester focused on playtesting, bug reporting, and gameplay feedback. My technical knowledge allows me to read and understand code, thus helping other developers through playtesting.","Je suis développeur et testeur de jeux, spécialisé dans le playtesting, les rapports de bugs et les retours de gameplay. Mes connaissances me permettent de lire et comprendre du code, afin de pouvoir aider d'autres développeurs lors de Playtesting."],
   testing:["Game Testing","Tests de jeux"],mods:["Mods","Mods"],gt:["Game Testing","Tests de jeux"],gtDesc:["Playtesting, QA reports, balance feedback","Playtesting, rapports QA, équilibrage"],md:["Mod Development","Développement de mods"],mdDesc:["Gameplay mods, Behavior changes","Mods de gameplay, changement de comportement"],basic:["Basics","Bases"],
   abyss:["Roblox game by Deep Spirit Games focused on catching fishes underwater with a harpoon.","Jeu Roblox de Deep Spirit Games axé sur la pêche sous-marine avec un harpon."],
-  solvo:["Roblox multiplayer survival game centered around evading a killer.","Jeu Roblox multijoueur de survie centré sur la fuite d'un tueur."],
+  solvo:["Roblox multiplayer survival game by Solvo Games centered around evading a killer.","Jeu Roblox multijoueur de survie par Solvo Games centré sur la fuite d'un tueur."],
+  laststop:["Driving survival game by The Hidden Route, building defenses on your bus while exploring the open road and encountering zombies and bandits.","Jeu de survie par The Hidden Route où l'on conduit un bus en y construisant des défenses, tout en explorant la route et en rencontrant zombies et bandits."],
   qac:["Multiple playtested games through QA Central, a hub for developers seeking testers.","Plusieurs jeux testés via QA Central, une plateforme pour développeurs recherchant des testeurs."],
   sail:["Open-world sea game by Yak Studios centered around expeditions.","Jeu de mer en monde ouvert par Yak Studios centré sur les expéditions."],
   battlewave:["Idle Tower Defense game by Starlume.","Jeu Idle Tower Defense par Starlume."],
